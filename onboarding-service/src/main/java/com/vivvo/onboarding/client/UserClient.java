@@ -1,5 +1,6 @@
-package com.vivvo.onboarding;
+package com.vivvo.onboarding.client;
 
+import com.vivvo.onboarding.dto.UserDto;
 import lombok.Setter;
 
 import javax.ws.rs.client.Client;
@@ -53,8 +54,4 @@ public class UserClient {
         return userTarget()
                 .path(userId.toString());
     }
-
-
-
-
 }

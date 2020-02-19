@@ -1,14 +1,16 @@
 package com.vivvo.onboarding.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import lombok.Getter;
 
-import java.util.UUID;
+import java.util.Map;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
 public class ValidationException extends RuntimeException {
 
-	public ValidationException(UUID userId) {
-		super("User not found by id " + userId);
+	@Getter
+	private Map<String, String> validationErrors;
+
+	public ValidationException( Map<String, String> validationErrors) {
+		super("Validation Error");
+		this.validationErrors = validationErrors;
 	}
 }

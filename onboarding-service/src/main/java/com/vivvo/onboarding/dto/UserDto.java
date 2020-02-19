@@ -10,6 +10,7 @@ import java.util.UUID;
 public class UserDto {
 
 	private UUID userId;
+	private String username;
 	private String firstName;
 	private String lastName;
 }
