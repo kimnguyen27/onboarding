@@ -1,4 +1,4 @@
 package com.vivvo.onboarding.exception;
 
-public class ApplicationExceptionHandler {
+public class UserNotFoundException {
 }

@@ -1,6 +1,5 @@
 package com.vivvo;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
@@ -10,23 +9,24 @@ import org.springframework.context.support.MessageSourceAccessor;
 @SpringBootApplication
 public class OnboadingApplication {
 
-    //TODO implement find for users
-    // - by firstName
-    // - by lastName
-    // implement phone subresource (all crud operations) and tests
-    // create action to make a phone number primary
-    // use twillio to send an sms code and verify a phone number (more actions)
-
-
-    @Autowired
-    private MessageSource messageSource;
-
     public static void main(String[] args) {
         SpringApplication.run(OnboadingApplication.class, args);
     }
 
+    //TODOS;
+    //Add phones subresource to users
+    //  liquibase create phone table
+    //  dto, entity, user @OneToMany phones
+    // phone validator.
+    // phone validator tests
+    // services, controller and client methods
+    // phone controller tests
+    //
+    // add phone number verification using twilio
+
+
     @Bean
-    public MessageSourceAccessor messageSourceAccessor() {
+    public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
         return new MessageSourceAccessor(messageSource);
     }
 }

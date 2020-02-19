@@ -1,85 +1,54 @@
 package com.vivvo.onboarding.service;
 
-
-import com.vivvo.onboarding.UserDto;
+import com.vivvo.onboarding.dto.UserDto;
 import com.vivvo.onboarding.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
+
 public class UserValidatorTest {
 
-    private UserValidator userValidator;
+	private UserValidator userValidator;
 
-    private UserRepository userRepository;
+	@Before
+	public void init() {
+		UserRepository mockUserRepository = mock(UserRepository.class);
+		when(mockUserRepository.existsByUsernameIgnoreCase(anyString())).thenReturn(false);
+		userValidator = new UserValidator(mockUserRepository);
+	}
 
-    @Before
-    public void init() {
-        userRepository = getMockUserRepository();
-        userValidator = new UserValidator(userRepository);
-    }
+	@Test
+	public void testValidate_whenFirstNameNull_shouldProduceError() {
+		Map<String, String> errors = userValidator.validate(newValidUserDto().setFirstName(null), false);
 
+		assertEquals(1, errors.size());
+		assertTrue(errors.containsValue(UserValidator.FIRST_NAME_REQUIRED));
+	}
 
-    @Test
-    public void testFirstNameRequired() {
-        UserDto dto = getValidUserDto()
-                .setFirstName(null);
+	@Test
+	public void testValidate_whenFirstNameBlank_shouldProduceError() {
+		Map<String, String> errors = userValidator.validate(newValidUserDto().setFirstName("    "), false);
 
-        Map<String, String> errors = userValidator.validate(dto);
+		assertEquals(1, errors.size());
+		assertTrue(errors.containsValue(UserValidator.FIRST_NAME_REQUIRED));
+	}
 
-        assertEquals(1, errors.size());
-        assertTrue(errors.containsKey("firstName"));
-        assertEquals(UserValidator.FIRST_NAME_REQUIRED, errors.get("firstName"));
-    }
+	@Test
+	public void testValidate_whenValid_shouldNotProduceErrors() {
+		Map<String, String> errors = userValidator.validate(newValidUserDto(), false);
 
-    @Test
-    public void testFirstNameGreaterThan50Characters() {
-        UserDto dto = getValidUserDto()
-                .setFirstName("12345678901234567890123456789012345678901234567890X");
+		assertEquals(0, errors.size());
+	}
 
-        Map<String, String> errors = userValidator.validate(dto);
-
-        assertEquals(1, errors.size());
-        assertTrue(errors.containsKey("firstName"));
-        assertEquals(UserValidator.FIRST_NAME_LT_50, errors.get("firstName"));
-    }
-
-    @Test
-    public void testLastNameRequired() {
-        UserDto dto = getValidUserDto()
-                .setLastName(null);
-
-        Map<String, String> errors = userValidator.validate(dto);
-
-        assertEquals(1, errors.size());
-        assertTrue(errors.containsKey("lastName"));
-        assertEquals(UserValidator.LAST_NAME_REQUIRED, errors.get("lastName"));
-    }
-
-
-    @Test
-    public void testUsernameTaken() {
-        when(userRepository.existsByUsername(anyString())).thenReturn(true);
-        UserDto dto = getValidUserDto();
-
-        Map<String, String> errors = userValidator.validate(dto);
-
-        assertEquals(1, errors.size());
-        assertTrue(errors.containsKey("username"));
-        assertEquals(UserValidator.USERNAME_TAKEN, errors.get("username"));
-    }
-
-    private UserDto getValidUserDto() {
-        return new UserDto()
-                .setFirstName("Tim")
-                .setLastName("Dodd")
-                .setUsername("doddt");
-    }
-
-    private UserRepository getMockUserRepository() {
-        return mock(UserRepository.class);
-    }
+	private UserDto newValidUserDto() {
+		return new UserDto()
+				.setFirstName("Tim")
+				.setLastName("Dodd")
+				.setUsername("doddt2");
+	}
 }
