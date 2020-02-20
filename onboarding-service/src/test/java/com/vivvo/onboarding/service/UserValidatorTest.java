@@ -47,8 +47,8 @@ public class UserValidatorTest {
 
 	private UserDto newValidUserDto() {
 		return new UserDto()
-				.setFirstName("Tim")
-				.setLastName("Dodd")
-				.setUsername("doddt2");
+				.setFirstName("Kim")
+				.setLastName("Nguyen")
+				.setUsername("nguyenk");
 	}
 }
