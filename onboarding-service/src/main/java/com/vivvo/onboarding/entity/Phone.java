@@ -24,6 +24,6 @@ public class Phone {
     private String phoneNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usr_id", referencedColumnName = "usr_id")
+    @JoinColumn(name = "usr_id")
     private User user;
 }

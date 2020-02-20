@@ -31,8 +31,7 @@ public class User {
 	@Column(name = "username")
 	private String username;
 
-	@OneToMany(cascade = CascadeType.ALL,
-			mappedBy = "user")
+	@OneToMany(mappedBy = "user")
 	private Set<Phone> phones = new HashSet<>();
 
 }

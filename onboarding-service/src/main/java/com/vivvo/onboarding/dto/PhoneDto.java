@@ -1,5 +1,6 @@
 package com.vivvo.onboarding.dto;
 
+import com.vivvo.onboarding.entity.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -10,6 +11,6 @@ import java.util.UUID;
 public class PhoneDto {
 
     private UUID phoneId;
-    private UUID userId;
     private String phoneNumber;
+    private User user;
 }
