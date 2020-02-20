@@ -6,6 +6,8 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -28,5 +30,9 @@ public class User {
 
 	@Column(name = "username")
 	private String username;
+
+	@OneToMany(cascade = CascadeType.ALL,
+			mappedBy = "user")
+	private Set<Phone> phones = new HashSet<>();
 
 }

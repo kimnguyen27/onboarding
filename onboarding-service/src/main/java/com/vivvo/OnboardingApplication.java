@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.MessageSourceAccessor;
 
 @SpringBootApplication
-public class OnboadingApplication {
+public class OnboardingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OnboadingApplication.class, args);
+        SpringApplication.run(OnboardingApplication.class, args);
     }
 
     //TODOS;
