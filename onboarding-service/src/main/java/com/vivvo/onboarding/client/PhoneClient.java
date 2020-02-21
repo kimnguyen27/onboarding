@@ -18,39 +18,40 @@ public class PhoneClient {
     public PhoneClient() { this.client = ClientBuilder.newClient(); }
 
     public PhoneDto create(PhoneDto dto) {
-        return phoneTarget()
+        return phoneTarget(dto.getUserId())
                 .request()
                 .post(Entity.json(dto), PhoneDto.class);
     }
 
     public PhoneDto update(PhoneDto dto) {
-        return phoneTarget(dto.getPhoneId())
+        return phoneTarget(dto.getUserId(), dto.getPhoneId())
                 .request()
                 .put(Entity.json(dto), PhoneDto.class);
     }
 
-    public void delete(UUID phoneId) {
-        phoneTarget(phoneId)
+    public void delete(UUID userId, UUID phoneId) {
+        phoneTarget(userId, phoneId)
                 .request()
                 .delete(Void.class);
     }
 
-    public PhoneDto get(UUID phoneId) {
-        return phoneTarget(phoneId)
+    public PhoneDto get(UUID userId, UUID phoneId) {
+        return phoneTarget(userId, phoneId)
                 .request()
                 .get(PhoneDto.class);
     }
 
-    private WebTarget phoneTarget() {
+    private WebTarget phoneTarget(UUID userId) {
         return client.target(baseUri)
                 .path("api")
                 .path("v1")
                 .path("users")
+                .path(userId.toString())
                 .path("phones");
     }
 
-    private WebTarget phoneTarget(UUID phoneId) {
-        return phoneTarget()
+    private WebTarget phoneTarget(UUID userId, UUID phoneId) {
+        return phoneTarget(userId)
                 .path(phoneId.toString());
     }
 }

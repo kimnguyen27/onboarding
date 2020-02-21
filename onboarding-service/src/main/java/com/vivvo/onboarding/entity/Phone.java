@@ -17,7 +17,7 @@ public class Phone {
 
     @Id
     @Column(name = "phone_id")
-    @Type(type = "uuid_char")
+    @Type(type = "uuid-char")
     private UUID phoneId;
 
     @Column(name = "phone_number")

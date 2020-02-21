@@ -10,16 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/users/{userId}/phones")
 public class PhoneController {
 
     @Autowired
     private PhoneService phoneService;
-
-    /** @ GetMapping()
-    public List<PhoneDto> findByUserId(@RequestParam("userId") UUID userId) {
-        return phoneService.findByUserId(userId);
-    }*/
 
     @GetMapping("/{phoneId}")
     public PhoneDto get(@PathVariable("phoneId") UUID phoneId) { return phoneService.get(phoneId); }

@@ -11,6 +11,8 @@ import java.util.UUID;
 public class PhoneDto {
 
     private UUID phoneId;
+    private UUID userId;
     private String phoneNumber;
+    //FIXME, the User object is an entity. public API needs to be data transfer objects only.
     private User user;
 }
