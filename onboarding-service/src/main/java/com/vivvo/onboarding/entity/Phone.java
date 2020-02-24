@@ -20,10 +20,14 @@ public class Phone {
     @Type(type = "uuid-char")
     private UUID phoneId;
 
+    @ManyToOne
+    @JoinColumn(name = "usr_id", insertable = false, updatable = false)
+    private User user;
+
+    @Column(name = "usr_id")
+    @Type(type = "uuid-char")
+    private UUID userId;
+
     @Column(name = "phone_number")
     private String phoneNumber;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usr_id")
-    private User user;
 }

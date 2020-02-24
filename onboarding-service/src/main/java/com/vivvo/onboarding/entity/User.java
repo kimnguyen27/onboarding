@@ -6,9 +6,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name="usr")
@@ -31,7 +29,8 @@ public class User {
 	@Column(name = "username")
 	private String username;
 
-	@OneToMany(mappedBy = "user")
-	private Set<Phone> phones = new HashSet<>();
+	@OneToMany
+	@JoinColumn(name = "usr_id")
+	private List<Phone> phones = new ArrayList<>();
 
 }

@@ -3,6 +3,7 @@ package com.vivvo.onboarding.dto;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data

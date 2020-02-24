@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Map;
+import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class PhoneValidatorTest {
@@ -18,7 +18,7 @@ public class PhoneValidatorTest {
     @Before
     public void init() {
         PhoneRepository mockPhoneRepository = mock(PhoneRepository.class);
-        when(mockPhoneRepository.existsByPhoneNumber(anyString())).thenReturn(false);
+        //when(mockPhoneRepository.existsByPhoneNumber(anyString())).thenReturn(false);
         phoneValidator = new PhoneValidator(mockPhoneRepository);
     }
 
@@ -32,15 +32,6 @@ public class PhoneValidatorTest {
     }
 
     @Test
-    public void testValidate_whenPhoneNumberIsTaken_shouldProduceError() {
-        Map<String, String> errors = phoneValidator.validate(newValidPhoneDto()
-                .setPhoneNumber("3065022827"), true);
-
-        assertEquals(1, errors.size());
-        assertTrue(errors.containsValue(PhoneValidator.PHONE_NUMBER_TAKEN));
-    }
-
-    @Test
     public void testValidate_whenValid_shouldNotProduceErrors() {
         Map<String, String> errors = phoneValidator.validate(newValidPhoneDto(), false);
 
@@ -49,6 +40,7 @@ public class PhoneValidatorTest {
 
     private PhoneDto newValidPhoneDto() {
         return new PhoneDto()
+                .setUserId(UUID.fromString("0077e874-a7a8-40fd-9333-cbe16677db15"))
                 .setPhoneNumber("3065022827");
     }
 }

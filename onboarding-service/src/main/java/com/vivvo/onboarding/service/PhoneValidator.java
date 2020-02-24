@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -45,10 +44,8 @@ public class PhoneValidator {
     private void validatePhoneNumber(PhoneDto dto, Map<String, String> validatorErrors, boolean isCreate) {
         if (StringUtils.isBlank(dto.getPhoneNumber())) {
             validatorErrors.put(PHONE_NUMBER, PHONE_NUMBER_REQUIRED);
-        } else if (dto.getPhoneNumber().length() > 15) {
+        } else if (isCreate && dto.getPhoneNumber().length() > 15) {
             validatorErrors.put(PHONE_NUMBER, PHONE_NUMBER_GT_15);
-        } else if (isCreate && phoneRepository.existsByPhoneNumber(dto.getPhoneNumber())) {
-            validatorErrors.put(PHONE_NUMBER, PHONE_NUMBER_TAKEN);
         }
     }
 }

@@ -23,27 +23,35 @@ public class PhoneService {
     @Autowired
     private PhoneValidator phoneValidator;
 
-    /**public List<PhoneDto> findByLastName(String lastName) {
-        return phoneRepository.findByLastName(lastName)
+    public List<PhoneDto> getPhoneList(UUID userId) {
+        return phoneRepository.findByUserId(userId)
                 .stream()
-                .map(phoneAssembler::assemble)  // User is not convertible to Phone
-                .collect(Collectors.toList());
-    }**/
-
-    public PhoneDto get(UUID phoneId) {
-        return phoneRepository.findById(phoneId)
                 .map(phoneAssembler::assemble)
-                .orElseThrow(() -> new PhoneNotFoundException(phoneId));
+                .collect(Collectors.toList());
     }
 
-    public PhoneDto create(PhoneDto dto) {
+    public PhoneDto get(UUID userId, UUID phoneId) {
+        PhoneDto tempDto = phoneRepository.findById(phoneId)
+                .map(phoneAssembler::assemble)
+                .orElseThrow(() -> new PhoneNotFoundException(phoneId));
+
+        if (!tempDto.getUserId().equals(userId)) {
+            throw(new PhoneNotFoundException(phoneId));
+        }
+
+        return tempDto;
+    }
+
+    public PhoneDto create(UUID userId, PhoneDto dto) {
+        dto.setUserId(userId);
         phoneValidator.validateForCreateAndThrow(dto);
         Phone entity = phoneAssembler.disassemble(dto);
         Phone savedEntity = phoneRepository.save(entity);
         return phoneAssembler.assemble(savedEntity);
     }
 
-    public PhoneDto update(PhoneDto dto) {
+    public PhoneDto update(UUID userId, PhoneDto dto) {
+        dto.setUserId(userId);
         phoneValidator.validateForUpdateAndThrow(dto);
         return phoneRepository.findById(dto.getPhoneId())
                 .map(entity -> phoneAssembler.disassembleInto(dto, entity))
