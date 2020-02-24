@@ -18,19 +18,19 @@ public class PhoneController {
     private PhoneService phoneService;
 
     @GetMapping
-    public List<PhoneDto> getPhoneList(@PathVariable UUID userId) { return phoneService.getPhoneList(userId); }
+    public List<PhoneDto> getPhoneList(@PathVariable("userId") UUID userId) { return phoneService.getPhoneList(userId); }
 
     @GetMapping("/{phoneId}")
-    public PhoneDto get(@PathVariable UUID userId, @PathVariable("phoneId") UUID phoneId) {
+    public PhoneDto get(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId) {
         return phoneService.get(userId, phoneId); }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PhoneDto create(@PathVariable UUID userId, @RequestBody PhoneDto dto) {
+    public PhoneDto create(@PathVariable("userId") UUID userId, @RequestBody PhoneDto dto) {
         return phoneService.create(userId, dto); }
 
     @PutMapping("/{phoneId}")
-    public PhoneDto update(@PathVariable UUID userId, @PathVariable("phoneId") UUID phoneId,
+    public PhoneDto update(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId,
                            @RequestBody PhoneDto dto) {
         dto.setPhoneId(phoneId);
         return phoneService.update(userId, dto);
