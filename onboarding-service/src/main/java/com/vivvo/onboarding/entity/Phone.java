@@ -30,4 +30,10 @@ public class Phone {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "verified")
+    private Boolean verified;
+
+    @Column(name = "verification_Sid")
+    private String verificationSid;
 }

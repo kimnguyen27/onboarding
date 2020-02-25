@@ -47,7 +47,7 @@ public class PhoneControllerTest {
     public void testCreateAndUpdate_whenValid_shouldUpdateSuccessfully() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
         PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
-        String phoneNumber = "3060000000";
+        String phoneNumber = "+13060000000";
         PhoneDto updatedPhoneDto = phoneClient.update(createdPhoneDto.setPhoneNumber(phoneNumber));
 
         assertEquals(phoneNumber, updatedPhoneDto.getPhoneNumber());
@@ -90,6 +90,16 @@ public class PhoneControllerTest {
         }
     }
 
+    @Test
+    public void testCreateAndVerify_whenValid_shouldVerifyPhone() {
+        UserDto createdUserDto = userClient.create(newValidUserDto());
+        PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
+
+
+
+        assertNotNull(createdPhoneDto.getPhoneId());
+    }
+
     private UserDto newValidUserDto() {
         return new UserDto()
                 .setFirstName("Kim")
@@ -100,6 +110,6 @@ public class PhoneControllerTest {
     private PhoneDto newValidPhoneDto(UserDto createdUserDto) {
         return new PhoneDto()
                 .setUserId(createdUserDto.getUserId())
-                .setPhoneNumber("3065022827");
+                .setPhoneNumber("+13065022827");
     }
 }

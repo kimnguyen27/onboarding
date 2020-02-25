@@ -17,7 +17,6 @@ public class PhoneValidator {
 
     static final String PHONE_NUMBER_REQUIRED = "PHONE_NUMBER_REQUIRED";
     static final String PHONE_NUMBER_GT_15 = "PHONE_NUMBER_GT_15";
-    static final String PHONE_NUMBER_TAKEN = "PHONE_NUMBER_TAKEN";
 
     private final PhoneRepository phoneRepository;
 

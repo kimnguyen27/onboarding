@@ -14,20 +14,23 @@ public class PhoneAssembler {
     public PhoneDto assemble(Phone entity) {
         return new PhoneDto()
                 .setPhoneId(entity.getPhoneId())
+                .setUserId(entity.getUserId())
                 .setPhoneNumber(entity.getPhoneNumber())
-                .setUserId(entity.getUserId());
+                .setVerified(entity.getVerified())
+                .setVerificationSid(entity.getVerificationSid());
     }
 
     public Phone disassemble(PhoneDto dto) {
         return new Phone()
                 .setPhoneId(UUID.randomUUID())
+                .setUserId(dto.getUserId())
                 .setPhoneNumber(dto.getPhoneNumber())
-                .setUserId(dto.getUserId());
+                .setVerified(dto.getVerified()) // Default Boolean value is null until changed
+                .setVerificationSid(dto.getVerificationSid());
     }
 
     public Phone disassembleInto(PhoneDto dto, Phone entity) {
         return entity
                 .setPhoneNumber(dto.getPhoneNumber());
-                // Assuming we can not change owner of a phone number without deleting first
     }
 }

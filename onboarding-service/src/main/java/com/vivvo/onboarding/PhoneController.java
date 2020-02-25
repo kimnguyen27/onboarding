@@ -18,7 +18,8 @@ public class PhoneController {
     private PhoneService phoneService;
 
     @GetMapping
-    public List<PhoneDto> getPhoneList(@PathVariable("userId") UUID userId) { return phoneService.getPhoneList(userId); }
+    public List<PhoneDto> getPhoneList(@PathVariable("userId") UUID userId) {
+        return phoneService.getPhoneList(userId); }
 
     @GetMapping("/{phoneId}")
     public PhoneDto get(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId) {
@@ -39,5 +40,18 @@ public class PhoneController {
     @DeleteMapping("/{phoneId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("phoneId") UUID phoneId) { phoneService.delete(phoneId); }
+
+    @PostMapping("/{phoneId}/sendVerificationCode")
+    public PhoneDto sendVerificationCode(@PathVariable("userId") UUID userId,
+                                         @PathVariable("phoneId") UUID phoneId) {
+        return phoneService.verifyInit(userId, phoneId);
+    }
+
+    @PostMapping("/{phoneId}/submitVerificationCode/{verificationCode}")
+    public PhoneDto submitVerificationCode(@PathVariable("userId") UUID userId,
+                                           @PathVariable("phoneId") UUID phoneId,
+                                           @PathVariable("verificationCode") String verificationCode) {
+        return phoneService.verifyAttempt(userId, phoneId, verificationCode);
+    }
 
 }
