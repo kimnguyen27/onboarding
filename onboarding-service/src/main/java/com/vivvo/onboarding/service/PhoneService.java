@@ -103,14 +103,14 @@ public class PhoneService {
             Message.creator(new com.twilio.type.PhoneNumber(phoneDto.getPhoneNumber()), // to
                     new com.twilio.type.PhoneNumber("+13069880988"), // from
                     "Your verification code: " + verificationCode).create();
+
+            phoneDto.setVerificationCode(verificationCode);
+            update(userId, phoneDto);
         }
         catch (TwilioException e)
         {
             throw new PhoneVerificationException(e.getMessage(), e.getCause());
         }
-
-        phoneDto.setVerificationCode(verificationCode);
-        update(userId, phoneDto);
     }
 
     public PhoneDto verifyAttempt(UUID userId, UUID phoneId, String attemptCode) throws AuthenticationException {
