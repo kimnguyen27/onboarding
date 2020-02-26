@@ -1,6 +1,5 @@
 package com.vivvo.onboarding.controller;
 
-import com.vivvo.onboarding.client.PhoneClient;
 import com.vivvo.onboarding.client.UserClient;
 import com.vivvo.onboarding.dto.PhoneDto;
 import com.vivvo.onboarding.dto.UserDto;
@@ -22,7 +21,6 @@ import static org.junit.Assert.*;
 public class PhoneControllerTest {
 
     private UserClient userClient;
-    private PhoneClient phoneClient;
 
     @LocalServerPort
     private int port;
@@ -31,24 +29,21 @@ public class PhoneControllerTest {
     public void init() {
         userClient = new UserClient();
         userClient.setBaseUri("http://localhost:" + port);
-
-        phoneClient = new PhoneClient();
-        phoneClient.setBaseUri("http://localhost:" + port);
     }
 
     @Test
     public void testCreate_whenValid_shouldCreatePhone() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
         assertNotNull(createdPhoneDto.getPhoneId());
     }
 
     @Test
     public void testCreateAndUpdate_whenValid_shouldUpdateSuccessfully() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
         String phoneNumber = "+13060000000";
-        PhoneDto updatedPhoneDto = phoneClient.update(createdPhoneDto.setPhoneNumber(phoneNumber));
+        PhoneDto updatedPhoneDto = userClient.updatePhone(createdPhoneDto.setPhoneNumber(phoneNumber));
 
         assertEquals(phoneNumber, updatedPhoneDto.getPhoneNumber());
     }
@@ -56,16 +51,16 @@ public class PhoneControllerTest {
     @Test
     public void testCreateAndDelete_whenValid_shouldDeleteSuccessfully() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
-        PhoneDto getDto = phoneClient.get(createdPhoneDto.getUserId(), createdPhoneDto.getPhoneId());
+        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto getDto = userClient.getPhone(createdPhoneDto.getUserId(), createdPhoneDto.getPhoneId());
 
         assertNotNull(getDto);
         assertEquals(createdUserDto.getUserId(), createdPhoneDto.getUserId());
 
-        phoneClient.delete(getDto.getUserId(), getDto.getPhoneId());
+        userClient.deletePhone(getDto.getUserId(), getDto.getPhoneId());
 
         try {
-            phoneClient.get(getDto.getUserId(), getDto.getPhoneId());
+            userClient.getPhone(getDto.getUserId(), getDto.getPhoneId());
             fail("Phone number was not deleted successfully with id" + getDto.getPhoneId());
         } catch (NotFoundException e) {
             // success
@@ -75,15 +70,15 @@ public class PhoneControllerTest {
     @Test
     public void testCreateAndDeleteTwice_secondDeleteShouldReturnNotFound() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
-        PhoneDto getDto = phoneClient.get(createdPhoneDto.getUserId(), createdPhoneDto.getPhoneId());
+        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto getDto = userClient.getPhone(createdPhoneDto.getUserId(), createdPhoneDto.getPhoneId());
 
         assertNotNull(getDto);
 
-        phoneClient.delete(getDto.getUserId(), getDto.getPhoneId());
+        userClient.deletePhone(getDto.getUserId(), getDto.getPhoneId());
 
         try {
-            phoneClient.delete(getDto.getUserId(), getDto.getPhoneId());
+            userClient.deletePhone(getDto.getUserId(), getDto.getPhoneId());
             fail("Second delete should have thrown NotFoundException");
         } catch (NotFoundException e) {
             // success
@@ -93,9 +88,9 @@ public class PhoneControllerTest {
     @Test
     public void testCreateAndVerify_whenValid_shouldVerifyPhone() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = phoneClient.create(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
 
-
+        //FIXME
 
         assertNotNull(createdPhoneDto.getPhoneId());
     }

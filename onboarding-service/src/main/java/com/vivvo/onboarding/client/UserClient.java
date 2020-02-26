@@ -1,5 +1,6 @@
 package com.vivvo.onboarding.client;
 
+import com.vivvo.onboarding.dto.PhoneDto;
 import com.vivvo.onboarding.dto.UserDto;
 import lombok.Setter;
 
@@ -53,5 +54,45 @@ public class UserClient {
     private WebTarget userTarget(UUID userId) {
         return userTarget()
                 .path(userId.toString());
+    }
+
+    // Phone methods
+
+    public PhoneDto createPhone(PhoneDto dto) {
+        return phoneTarget(dto.getUserId())
+                .request()
+                .post(Entity.json(dto), PhoneDto.class);
+    }
+
+    public PhoneDto updatePhone(PhoneDto dto) {
+        return phoneTarget(dto.getUserId(), dto.getPhoneId())
+                .request()
+                .put(Entity.json(dto), PhoneDto.class);
+    }
+
+    public void deletePhone(UUID userId, UUID phoneId) {
+        phoneTarget(userId, phoneId)
+                .request()
+                .delete(Void.class);
+    }
+
+    public PhoneDto getPhone(UUID userId, UUID phoneId) {
+        return phoneTarget(userId, phoneId)
+                .request()
+                .get(PhoneDto.class);
+    }
+
+    private WebTarget phoneTarget(UUID userId) {
+        return client.target(baseUri)
+                .path("api")
+                .path("v1")
+                .path("users")
+                .path(userId.toString())
+                .path("phones");
+    }
+
+    private WebTarget phoneTarget(UUID userId, UUID phoneId) {
+        return phoneTarget(userId)
+                .path(phoneId.toString());
     }
 }
