@@ -2,8 +2,6 @@ package com.vivvo.onboarding.assembler;
 
 import com.vivvo.onboarding.dto.PhoneDto;
 import com.vivvo.onboarding.entity.Phone;
-import com.vivvo.onboarding.entity.User;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -17,7 +15,7 @@ public class PhoneAssembler {
                 .setUserId(entity.getUserId())
                 .setPhoneNumber(entity.getPhoneNumber())
                 .setVerified(entity.getVerified())
-                .setVerificationSid(entity.getVerificationSid());
+                .setVerificationCode(entity.getVerificationCode());
     }
 
     public Phone disassemble(PhoneDto dto) {
@@ -26,7 +24,7 @@ public class PhoneAssembler {
                 .setUserId(dto.getUserId())
                 .setPhoneNumber(dto.getPhoneNumber())
                 .setVerified(dto.getVerified()) // Default Boolean value is null until changed
-                .setVerificationSid(dto.getVerificationSid());
+                .setVerificationCode(dto.getVerificationCode());
     }
 
     public Phone disassembleInto(PhoneDto dto, Phone entity) {

@@ -34,6 +34,6 @@ public class Phone {
     @Column(name = "verified")
     private Boolean verified;
 
-    @Column(name = "verification_Sid")
-    private String verificationSid;
+    @Column(name = "verification_code")
+    private String verificationCode;
 }

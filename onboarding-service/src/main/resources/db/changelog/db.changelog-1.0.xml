@@ -43,10 +43,10 @@
                 onUpdate="CASCADE"/>
     </changeSet>
 
-    <changeSet author="nguyenk" id="add-verified-column-phone">
+    <changeSet author="nguyenk" id="addVerification-phone">
         <addColumn tableName="phone">
             <column name="verified" type="Boolean"/>
-            <column name="verification_Sid" type="varchar(34)"/>
+            <column name="verification_code" type="varchar(6)"/>
         </addColumn>
     </changeSet>
 

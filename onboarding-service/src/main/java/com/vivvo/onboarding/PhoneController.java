@@ -42,9 +42,9 @@ public class PhoneController {
     public void delete(@PathVariable("phoneId") UUID phoneId) { phoneService.delete(phoneId); }
 
     @PostMapping("/{phoneId}/sendVerificationCode")
-    public PhoneDto sendVerificationCode(@PathVariable("userId") UUID userId,
+    public void sendVerificationCode(@PathVariable("userId") UUID userId,
                                          @PathVariable("phoneId") UUID phoneId) {
-        return phoneService.verifyInit(userId, phoneId);
+        phoneService.verifyInit(userId, phoneId);
     }
 
     @PostMapping("/{phoneId}/submitVerificationCode/{verificationCode}")
