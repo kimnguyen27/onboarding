@@ -29,6 +29,8 @@ public class PhoneAssembler {
 
     public Phone disassembleInto(PhoneDto dto, Phone entity) {
         return entity
-                .setPhoneNumber(dto.getPhoneNumber());
+                .setPhoneNumber(dto.getPhoneNumber())
+                .setVerificationCode(dto.getVerificationCode())
+                .setVerified(dto.getVerified());
     }
 }

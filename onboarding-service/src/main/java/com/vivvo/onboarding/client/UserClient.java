@@ -82,6 +82,21 @@ public class UserClient {
                 .get(PhoneDto.class);
     }
 
+    public PhoneDto beginVerification(UUID userId, UUID phoneId) {
+        return phoneTarget(userId, phoneId)
+                .path("sendVerificationCode")
+                .request()
+                .post(Entity.json(phoneId), PhoneDto.class);
+    }
+
+    public PhoneDto verifyPhone(UUID userId, UUID phoneId, String verificationCode) {
+        return phoneTarget(userId, phoneId)
+                .path("submitVerificationCode")
+                .path(verificationCode)
+                .request()
+                .post(Entity.json(verificationCode), PhoneDto.class);
+    }
+
     private WebTarget phoneTarget(UUID userId) {
         return client.target(baseUri)
                 .path("api")

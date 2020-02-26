@@ -90,9 +90,12 @@ public class PhoneControllerTest {
         UserDto createdUserDto = userClient.create(newValidUserDto());
         PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
 
-        //FIXME
+        userClient.beginVerification(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
+        PhoneDto updatedPhoneDto = userClient.getPhone(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
+        PhoneDto verifiedPhoneDto = userClient.verifyPhone(updatedPhoneDto.getUserId(), updatedPhoneDto.getPhoneId(),
+                updatedPhoneDto.getVerificationCode());
 
-        assertNotNull(createdPhoneDto.getPhoneId());
+        assertTrue(verifiedPhoneDto.getVerified());
     }
 
     private UserDto newValidUserDto() {
