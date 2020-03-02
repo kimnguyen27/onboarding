@@ -14,6 +14,16 @@ public class OnboardingWebApplication {
         SpringApplication.run(OnboardingWebApplication.class, args);
     }
 
+    //TODOS
+    //validation (red messages below fields)
+    //create (users)
+    //link from list page (link from summary to details)
+    //create/update/delete phones
+    //delete users (from summary page)
+    //twilio message verification stuff
+
+
+
     @Bean
     public UserClient userClient() {
         UserClient userClient = new UserClient();
