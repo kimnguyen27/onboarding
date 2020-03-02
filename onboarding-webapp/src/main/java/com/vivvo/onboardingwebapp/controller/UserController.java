@@ -33,4 +33,10 @@ public class UserController {
         return userClient.create(dto);
     }
 
+
+    @PutMapping("/{userId}")
+    public UserDto update(@PathVariable("userId") UUID userId, @RequestBody UserDto dto) {
+        dto.setUserId(userId);
+        return userClient.update(dto);
+    }
 }

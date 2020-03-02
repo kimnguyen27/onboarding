@@ -16,4 +16,12 @@ export class UserService {
   findAllUsers(): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(BASE_URI);
   }
+
+  get(userId: string): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${BASE_URI}/${userId}`);
+  }
+
+  update(user: UserModel): Observable<UserModel> {
+    return this.httpClient.put<UserModel>(`${BASE_URI}/${user.userId}`, user);
+  }
 }

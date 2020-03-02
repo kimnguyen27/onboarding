@@ -52,7 +52,7 @@ public class UserAssembler {
 
 		CollectionComparator.<Phone, PhoneDto, UUID>builder()
 				.left(entity.getPhones())
-				.right(dto.getPhones())
+				.right(dto.getPhones() == null ? Collections.emptyList() : dto.getPhones())
 				.leftKeySelector(Phone::getPhoneId)
 				.rightKeySelector(PhoneDto::getPhoneId)
 				.whenRemoved(phoneEntity -> entity.getPhones().remove(phoneEntity))
