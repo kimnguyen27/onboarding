@@ -9,8 +9,12 @@
             <column name="usr_id" type="varchar(36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="first_name" type="varchar(50)"/>
-            <column name="last_name" type="varchar(50)"/>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -38,9 +42,7 @@
                 baseColumnNames="usr_id"
                 constraintName="fk_phone_usr"
                 referencedTableName="usr"
-                referencedColumnNames="usr_id"
-                onDelete="CASCADE"
-                onUpdate="CASCADE"/>
+                referencedColumnNames="usr_id"/>
     </changeSet>
 
     <changeSet author="nguyenk" id="addVerification-phone">

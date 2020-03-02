@@ -3,6 +3,7 @@ package com.vivvo.onboarding;
 import com.vivvo.onboarding.dto.PhoneDto;
 import com.vivvo.onboarding.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class PhoneController {
 
     @GetMapping
     public List<PhoneDto> getPhoneList(@PathVariable("userId") UUID userId) {
-        return phoneService.getPhoneList(userId); }
+        return phoneService.findPhonesByUserId(userId); }
 
     @GetMapping("/{phoneId}")
     public PhoneDto get(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId) {

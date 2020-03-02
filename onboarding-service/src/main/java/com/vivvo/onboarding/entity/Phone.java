@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,10 +20,6 @@ public class Phone {
     @Column(name = "phone_id")
     @Type(type = "uuid-char")
     private UUID phoneId;
-
-    @ManyToOne
-    @JoinColumn(name = "usr_id", insertable = false, updatable = false)
-    private User user;
 
     @Column(name = "usr_id")
     @Type(type = "uuid-char")

@@ -29,8 +29,6 @@ public class User {
 	@Column(name = "username")
 	private String username;
 
-	@OneToMany
-	@JoinColumn(name = "usr_id")
-	private List<Phone> phones = new ArrayList<>();
-
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", orphanRemoval = true)
+	private List<Phone> phones;
 }

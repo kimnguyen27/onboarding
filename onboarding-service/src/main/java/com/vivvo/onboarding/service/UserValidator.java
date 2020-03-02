@@ -25,10 +25,14 @@ public class UserValidator {
 	static final String USERNAME_TAKEN = "USERNAME_TAKEN";
 
 	private final UserRepository userRepository;
+	private final PhoneValidator phoneValidator;
+
 
 	@Autowired
-	public UserValidator(UserRepository userRepository) {
+	public UserValidator(UserRepository userRepository,
+						 PhoneValidator phoneValidator) {
 		this.userRepository = userRepository;
+		this.phoneValidator = phoneValidator;
 	}
 
 	public void validateForCreateAndThrow(UserDto dto) {
@@ -41,6 +45,8 @@ public class UserValidator {
 
 	private void validateAndThrow(UserDto dto, boolean isCreate) {
 		Map<String, String> errors = validate(dto, isCreate);
+		errors.putAll(phoneValidator.validateAll(dto.getPhones(), isCreate));
+
 		if (!errors.isEmpty()) {
 			throw new ValidationException(errors);
 		}

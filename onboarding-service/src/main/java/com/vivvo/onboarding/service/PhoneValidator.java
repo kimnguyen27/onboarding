@@ -7,8 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class PhoneValidator {
@@ -33,6 +36,21 @@ public class PhoneValidator {
             throw new ValidationException(errors);
         }
     }
+
+    public Map<String, String> validateAll(List<PhoneDto> phones, boolean isCreate) {
+        if (phones == null) {
+            return Collections.emptyMap();
+        }
+        for(int i = 0; i< phones.size(); i++) {
+            return validate(phones.get(i), isCreate)
+                    .entrySet()
+                    .stream()
+                    .collect(Collectors.toMap(entry -> String.format("phones[{}]." + entry.getKey()),
+                            entry -> entry.getValue()));
+        }
+        return Collections.emptyMap();
+    }
+
 
     public Map<String, String> validate(PhoneDto dto, boolean isCreate) {
         Map<String, String> validatorErrors = new LinkedHashMap<>();

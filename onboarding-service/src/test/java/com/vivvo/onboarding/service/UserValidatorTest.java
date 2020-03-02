@@ -5,6 +5,7 @@ import com.vivvo.onboarding.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +19,12 @@ public class UserValidatorTest {
 	@Before
 	public void init() {
 		UserRepository mockUserRepository = mock(UserRepository.class);
+		PhoneValidator mockPhoneValidator = mock(PhoneValidator.class);
+
 		when(mockUserRepository.existsByUsernameIgnoreCase(anyString())).thenReturn(false);
-		userValidator = new UserValidator(mockUserRepository);
+		when(mockPhoneValidator.validateAll(anyList(), anyBoolean())).thenReturn(Collections.emptyMap());
+
+		userValidator = new UserValidator(mockUserRepository, mockPhoneValidator);
 	}
 
 	@Test
