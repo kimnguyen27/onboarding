@@ -16,9 +16,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping()
+	@GetMapping(params = "lastName")
 	public List<UserDto> findByLastName(@RequestParam("lastName") String lastName) {
 		return userService.findByLastName(lastName);
+	}
+
+	@GetMapping
+	public List<UserDto> findAll() {
+		return userService.findAll();
 	}
 
 	@GetMapping("/{userId}")

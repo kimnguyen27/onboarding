@@ -8,6 +8,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import java.util.List;
 import java.util.UUID;
 
 public class UserClient {
@@ -42,6 +44,13 @@ public class UserClient {
         return userTarget(userId)
                 .request()
                 .get(UserDto.class);
+    }
+
+    public List<UserDto> findAll() {
+        return userTarget()
+                .request()
+                .get(new GenericType<List<UserDto>>() {
+                });
     }
 
     private WebTarget userTarget() {

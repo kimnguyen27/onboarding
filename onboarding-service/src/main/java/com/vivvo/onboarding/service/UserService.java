@@ -23,6 +23,16 @@ public class UserService {
 	@Autowired
 	private UserValidator userValidator;
 
+	public List<UserDto> findAll() {
+		return userRepository.findAll()
+				.stream()
+				.map(userAssembler::assemble)
+				.sorted(Comparator.comparing(UserDto::getLastName)
+						.thenComparing(UserDto::getFirstName))
+				.collect(Collectors.toList());
+	}
+
+
 	public List<UserDto> findByLastName(String lastName) {
 		return userRepository.findByLastName(lastName)
 				.stream()

@@ -12,6 +12,7 @@ import com.vivvo.onboarding.exception.PhoneNotFoundException;
 import com.vivvo.onboarding.exception.PhoneVerificationException;
 import com.vivvo.onboarding.exception.ValidationException;
 import com.vivvo.onboarding.repository.PhoneRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@Slf4j
 public class PhoneService {
 
     @Autowired
@@ -41,8 +43,12 @@ public class PhoneService {
 
     @PostConstruct
     public void init() {
-        Twilio.init(applicationProperties.getTwilio().getAccountSid(),
-                applicationProperties.getTwilio().getAuthToken());
+        try {
+            Twilio.init(applicationProperties.getTwilio().getAccountSid(),
+                    applicationProperties.getTwilio().getAuthToken());
+        } catch (Exception e) {
+            log.error("Failed to do twilio things. note the app won't work");
+        }
     }
 
 
