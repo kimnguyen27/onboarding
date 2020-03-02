@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../user.service";
 import {Subscription} from "rxjs";
-import {delay} from "rxjs/internal/operators";
+import {debounceTime, delay} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-user-edit',
@@ -33,6 +33,14 @@ export class UserEditComponent implements OnInit, OnDestroy {
           this.formGroup.patchValue(user);
         });
     }));
+
+    this.subscriptions.push(this.formGroup.get('firstName').valueChanges
+      .pipe(
+        debounceTime(100)
+      )
+      .subscribe(v => {
+        console.log("the new value is " + v);
+      }));
   }
 
   ngOnDestroy() {
