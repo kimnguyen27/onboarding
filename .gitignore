@@ -36,4 +36,3 @@ application-personal.properties
 .DS_Store
 *.swp
 /onboarding-service/src/main/resources/application-dev.properties
-/onboarding-service/src/test/resources/application-test.properties

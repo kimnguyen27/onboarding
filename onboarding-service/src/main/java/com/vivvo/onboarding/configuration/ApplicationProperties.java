@@ -13,7 +13,7 @@ public class ApplicationProperties {
 
     @Data
     public static class TwilioProperties {
-        private String accountSid = System.getenv("TWILIO_ACCOUNT_SID");
-        private String authToken = System.getenv("TWILIO_AUTH_TOKEN");
+        private String accountSid;
+        private String authToken;
     }
 }
