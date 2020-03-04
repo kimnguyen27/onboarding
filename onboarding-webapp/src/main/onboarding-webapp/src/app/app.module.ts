@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { UserEditTemplateComponent } from './user-edit-template/user-edit-template.component';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { UserEditTemplateComponent } from './user-edit-template/user-edit-templa
     AppComponent,
     UserListComponent,
     UserEditComponent,
-    UserEditTemplateComponent
+    UserEditTemplateComponent,
+    ControlMessagesComponent
   ],
   imports: [
     BrowserModule,

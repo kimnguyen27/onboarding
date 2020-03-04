@@ -2,26 +2,29 @@
   <h1>I AM LOADING</h1>
 </div>
 
-<div class="row" [formGroup]="formGroup">
+<form class="row" [formGroup]="userEditForm">
   <div class="col-md-6">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" formControlName="firstName">
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" formControlName="lastName">
-    </div>
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" id="username" formControlName="username">
     </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName">
+      <app-control-messages [control]="userEditForm.get('firstName')"></app-control-messages>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+      <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
+    </div>
+    <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userEditForm.valid">Save</button>
   </div>
   <div class="col-md-6">
     <pre>
-      {{this.formGroup.value | json}}
+      {{this.userEditForm.value | json}}
     </pre>
   </div>
-</div>
+</form>
 
-<button class="btn btn-primary" (click)="save()">Save</button>
+

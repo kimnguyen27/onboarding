@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../user.service";
+import {UserService} from "../service/user.service";
 import {Subscription} from "rxjs";
 import {debounceTime, delay} from "rxjs/internal/operators";
 
@@ -12,7 +12,7 @@ import {debounceTime, delay} from "rxjs/internal/operators";
 })
 export class UserEditComponent implements OnInit, OnDestroy {
 
-  formGroup: FormGroup = this.createFormGroup();
+  userEditForm: FormGroup = this.createFormGroup();
   subscriptions: Subscription[] = [];
   loadingSubscription: Subscription = Subscription.EMPTY;
 
@@ -30,37 +30,42 @@ export class UserEditComponent implements OnInit, OnDestroy {
         .pipe(
            delay(1000)
         ).subscribe(user => {
-          this.formGroup.patchValue(user);
+          this.userEditForm.patchValue(user);
         });
     }));
 
-    this.subscriptions.push(this.formGroup.get('firstName').valueChanges
+    this.subscriptions.push(this.userEditForm.get('firstName').valueChanges
       .pipe(
         debounceTime(100)
       )
       .subscribe(v => {
-        console.log("the new value is " + v);
+        console.log("New firstName value is " + v);
       }));
+
+    if('username' != null) {
+      //this.userEditForm.get('username').disable();
+    }
+    console.log(this.userEditForm);
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  save(): void {
-     const valueToSave = {...this.formGroup.value, userId: this.userId};
+  saveUser(): void {
+     const valueToSave = {...this.userEditForm.value, userId: this.userId};
 
      this.userService.update(valueToSave).subscribe(user => {
-       this.formGroup.patchValue(user);
+       this.userEditForm.patchValue(user);
      })
   }
 
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
-      'firstName': '',
-      'lastName': '',
-      'username': ''
+      'username': '',
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required]
     });
   }
 
