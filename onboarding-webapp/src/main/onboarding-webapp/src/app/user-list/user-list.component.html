@@ -6,8 +6,9 @@
     <th>Last Name</th>
     <th>User Name</th>
   </tr>
+  </thead>
   <tbody>
-  <tr *ngFor="let user of users" class="users" routerLink="/users/{{user.userId}}" >
+  <tr *ngFor="let user of users" class="users" routerLink="/users/{{user.userId}}">
     <td>{{user.firstName}}</td>
     <td>{{user.lastName}}</td>
     <td>{{user.username}}</td>

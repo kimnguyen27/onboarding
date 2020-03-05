@@ -14,8 +14,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   userCreateForm: FormGroup = this.createFormGroup();
   subscriptions: Subscription[] = [];
 
-  private userId: string;
-
   constructor(private formBuilder: FormBuilder,
               private userService: UserService) {
   }
@@ -41,13 +39,12 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   }
 
   saveUser(): void {
-    const valueToSave = {...this.userCreateForm.value, userId: this.userId};
+    const valueToSave = {...this.userCreateForm.value};
 
     this.userService.create(valueToSave).subscribe(user => {
       this.userCreateForm.patchValue(user);
     })
   }
-
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({

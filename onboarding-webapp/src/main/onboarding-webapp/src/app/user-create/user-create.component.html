@@ -1,5 +1,6 @@
 <h3>Create User</h3>
-<form class="row" [formGroup]="userCreateForm">
+<!-- TODO: Fix enter submit response error -->
+<form class="row" [formGroup]="userCreateForm" (keyup.enter)="saveUser()">
   <div class="col-md-6">
     <div class="form-group">
       <label for="username">Username</label>
@@ -16,7 +17,7 @@
       <input type="text" class="form-control" id="lastName" formControlName="lastName">
       <app-control-messages [control]="userCreateForm.get('lastName')"></app-control-messages>
     </div>
-    <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userCreateForm.valid">Save</button>
+    <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userCreateForm.valid">Create</button>
   </div>
   <div class="col-md-6">
     <pre>
