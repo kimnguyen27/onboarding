@@ -14,7 +14,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   userCreateForm: FormGroup = this.createFormGroup();
   subscriptions: Subscription[] = [];
-  loadingSubscription: Subscription = Subscription.EMPTY;
 
   private userId: string;
 
@@ -24,16 +23,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.subscriptions.push(this.activatedRoute.params.subscribe(params => {
-    //   this.userId = params['userId'];
-    //   this.loadingSubscription = this.userService.get(this.userId)
-    //     .pipe(
-    //       delay(1000)
-    //     ).subscribe(user => {
-    //       this.userEditForm.patchValue(user);
-    //     });
-    // }));
-
     this.subscriptions.push(this.userCreateForm.get('firstName').valueChanges
       .pipe(
         debounceTime(100)

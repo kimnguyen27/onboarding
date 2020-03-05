@@ -6,7 +6,7 @@
     <th>User Name</th>
   </tr>
   <tbody>
-  <tr *ngFor="let user of users">
+  <tr *ngFor="let user of users" class="users" routerLink="/users/{{user.userId}}" >
     <td>{{user.firstName}}</td>
     <td>{{user.lastName}}</td>
     <td>{{user.username}}</td>
