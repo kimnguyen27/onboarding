@@ -9,6 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { UserEditTemplateComponent } from './user-edit-template/user-edit-template.component';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UserEditTemplateComponent } from './user-edit-template/user-edit-templa
     UserListComponent,
     UserEditComponent,
     UserEditTemplateComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,

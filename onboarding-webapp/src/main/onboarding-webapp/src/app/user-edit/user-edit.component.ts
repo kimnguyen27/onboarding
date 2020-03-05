@@ -42,9 +42,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
         console.log("New firstName value is " + v);
       }));
 
-    if('username' != null) {
-      //this.userEditForm.get('username').disable();
-    }
     console.log(this.userEditForm);
   }
 

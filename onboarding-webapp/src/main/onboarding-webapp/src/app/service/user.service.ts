@@ -17,6 +17,10 @@ export class UserService {
     return this.httpClient.get<UserModel[]>(BASE_URI);
   }
 
+  create(user: UserModel): Observable<UserModel> {
+    return this.httpClient.post<UserModel>(`${BASE_URI}/`, user);
+  }
+
   get(userId: string): Observable<UserModel> {
     return this.httpClient.get<UserModel>(`${BASE_URI}/${userId}`);
   }

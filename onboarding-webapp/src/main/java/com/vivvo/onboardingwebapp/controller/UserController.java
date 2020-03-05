@@ -21,18 +21,16 @@ public class UserController {
         return userClient.findAll();
     }
 
-
-    @GetMapping("/{userId}")
-    public UserDto get(@PathVariable("userId") UUID userId) {
-        return userClient.get(userId);
-    }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto create(@RequestBody UserDto dto) {
         return userClient.create(dto);
     }
 
+    @GetMapping("/{userId}")
+    public UserDto get(@PathVariable("userId") UUID userId) {
+        return userClient.get(userId);
+    }
 
     @PutMapping("/{userId}")
     public UserDto update(@PathVariable("userId") UUID userId, @RequestBody UserDto dto) {

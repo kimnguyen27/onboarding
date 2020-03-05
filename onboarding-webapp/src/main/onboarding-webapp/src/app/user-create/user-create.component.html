@@ -1,0 +1,27 @@
+<form class="row" [formGroup]="userCreateForm">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username">
+      <app-control-messages [control]="userCreateForm.get('username')"></app-control-messages>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName">
+      <app-control-messages [control]="userCreateForm.get('firstName')"></app-control-messages>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+      <app-control-messages [control]="userCreateForm.get('lastName')"></app-control-messages>
+    </div>
+    <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userCreateForm.valid">Save</button>
+  </div>
+  <div class="col-md-6">
+    <pre>
+      {{this.userCreateForm.value | json}}
+    </pre>
+  </div>
+</form>
+
+
