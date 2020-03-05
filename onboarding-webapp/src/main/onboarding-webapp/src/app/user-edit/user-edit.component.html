@@ -1,30 +1,33 @@
 <div *ngIf="!loadingSubscription.closed">
-  <h1>I AM LOADING</h1>
+  <h1>LOADING</h1>
 </div>
-
-<form class="row" [formGroup]="userEditForm">
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" formControlName="username">
+<ng-container *ngIf="loadingSubscription.closed">
+  <h3>Edit</h3>
+  <form class="row" [formGroup]="userEditForm">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" readonly class="form-control" id="username" formControlName="username">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+        <app-control-messages [control]="userEditForm.get('firstName')"></app-control-messages>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+        <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
+      </div>
+      <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userEditForm.valid">Save</button>
     </div>
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" formControlName="firstName">
-      <app-control-messages [control]="userEditForm.get('firstName')"></app-control-messages>
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" formControlName="lastName">
-      <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
-    </div>
-    <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userEditForm.valid">Save</button>
-  </div>
-  <div class="col-md-6">
+    <div class="col-md-6">
     <pre>
       {{this.userEditForm.value | json}}
     </pre>
-  </div>
-</form>
+    </div>
+  </form>
+</ng-container>
+
 
 
