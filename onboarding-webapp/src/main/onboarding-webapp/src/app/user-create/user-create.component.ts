@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {debounceTime} from "rxjs/internal/operators";
 
@@ -18,7 +17,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   private userId: string;
 
   constructor(private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute,
               private userService: UserService) {
   }
 
@@ -30,6 +28,10 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       .subscribe(v => {
         console.log("New firstName value is " + v);
       }));
+
+    // if (this.userCreateForm.get('username').value == null) {
+    //   this.isReadOnly = false;
+    // }
 
     console.log(this.userCreateForm);
   }
