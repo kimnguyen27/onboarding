@@ -41,12 +41,12 @@ public class PhoneValidator {
         if (phones == null) {
             return Collections.emptyMap();
         }
-        for(int i = 0; i< phones.size(); i++) {
-            return validate(phones.get(i), isCreate)
+        for (PhoneDto phone : phones) {
+            return validate(phone, isCreate)
                     .entrySet()
                     .stream()
-                    .collect(Collectors.toMap(entry -> String.format("phones[{}]." + entry.getKey()),
-                            entry -> entry.getValue()));
+                    .collect(Collectors.toMap(entry -> "phones[{}]." + entry.getKey(),
+                            Map.Entry::getValue));
         }
         return Collections.emptyMap();
     }

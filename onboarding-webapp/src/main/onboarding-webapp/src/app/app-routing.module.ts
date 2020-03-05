@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'users/:userId', component: UserEditComponent},
   {path: 'users2/:userId', component: UserEditTemplateComponent}
 ];
-;
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
