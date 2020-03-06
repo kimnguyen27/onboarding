@@ -37,4 +37,11 @@ public class UserController {
         dto.setUserId(userId);
         return userClient.update(dto);
     }
+
+    @DeleteMapping("/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("userId") UUID userId) {
+        userClient.delete(userId);
+    }
+
 }

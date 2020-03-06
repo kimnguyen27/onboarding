@@ -28,4 +28,8 @@ export class UserService {
   update(user: UserModel): Observable<UserModel> {
     return this.httpClient.put<UserModel>(`${BASE_URI}/${user.userId}`, user);
   }
+
+  delete(userId: string): void {
+    this.httpClient.delete(`${BASE_URI}/${userId}`);
+  }
 }

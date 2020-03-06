@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {UserModel} from "../model/user.model";
 import {UserService} from "../service/user.service";
+import {ModalDirective} from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-user-list',
@@ -11,7 +12,8 @@ export class UserListComponent implements OnInit {
 
   users: UserModel[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
     this.userService.findAllUsers().subscribe(users => {
@@ -19,4 +21,10 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  deleteUser(user: UserModel) {
+    this.userService.delete(user.userId);
+    // this.userService.findAllUsers().subscribe( users => {
+    //   this.users = users;
+    // });
+  }
 }

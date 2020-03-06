@@ -5,13 +5,15 @@
     <th>First Name</th>
     <th>Last Name</th>
     <th>User Name</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users" class="users" routerLink="/users/{{user.userId}}">
-    <td>{{user.firstName}}</td>
-    <td>{{user.lastName}}</td>
-    <td>{{user.username}}</td>
+  <tr *ngFor="let user of users;" class="usersRow">
+    <td routerLink="/users/{{user.userId}}">{{user.firstName}}</td>
+    <td routerLink="/users/{{user.userId}}">{{user.lastName}}</td>
+    <td routerLink="/users/{{user.userId}}">{{user.username}}</td>
+    <td><button type="button" class="btn btn-light" id="deleteUser" (click)="deleteUser(user)">✕</button></td>
   </tr>
   </tbody>
 </table>
