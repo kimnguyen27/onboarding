@@ -27,10 +27,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
         console.log("New firstName value is " + v);
       }));
 
-    // if (this.userCreateForm.get('username').value == null) {
-    //   this.isReadOnly = false;
-    // }
-
     console.log(this.userCreateForm);
   }
 

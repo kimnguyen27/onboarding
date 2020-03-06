@@ -19,7 +19,8 @@
         <input type="text" class="form-control" id="lastName" formControlName="lastName">
         <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
       </div>
-      <button class="btn btn-primary" (click)="saveUser()" [disabled]="!userEditForm.valid">Save</button>
+      <button type="button" class="btn btn-primary" (click)="saveUser()"
+              [disabled]="!userEditForm.valid">Save</button>
     </div>
     <div class="col-md-6">
     <pre>
