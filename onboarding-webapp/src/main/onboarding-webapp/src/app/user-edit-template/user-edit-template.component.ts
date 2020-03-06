@@ -8,7 +8,7 @@ import {delay} from "rxjs/internal/operators";
 @Component({
   selector: 'app-user-edit-template',
   templateUrl: './user-edit-template.component.html',
-  styleUrls: ['./user-edit-template.component.css']
+  styleUrls: ['./user-edit-template.component.scss']
 })
 export class UserEditTemplateComponent implements OnInit, OnDestroy {
 
