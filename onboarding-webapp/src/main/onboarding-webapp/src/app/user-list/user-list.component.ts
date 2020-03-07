@@ -1,7 +1,6 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserModel} from "../model/user.model";
 import {UserService} from "../service/user.service";
-import {ModalDirective} from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-user-list',
