@@ -17,7 +17,7 @@
       <input type="text" class="form-control" id="lastName" formControlName="lastName">
       <app-control-messages [control]="userCreateForm.get('lastName')"></app-control-messages>
     </div>
-    <button type="button" class="btn btn-primary" (click)="saveUser()"
+    <button type="button" mdbBtn color="default" (click)="saveUser()"
             [disabled]="!userCreateForm.valid">Create</button>
   </div>
   <div class="col-md-6">
