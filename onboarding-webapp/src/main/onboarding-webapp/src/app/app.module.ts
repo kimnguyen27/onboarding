@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { UserEditTemplateComponent } from './user-edit-template/user-edit-template.component';
 import { UserCreateComponent } from './user-create/user-create.component';
+import { UserDeleteModalComponent } from "./user-delete-modal/user-delete-modal.component";
+
 
 @NgModule({
   declarations: [
@@ -18,14 +21,16 @@ import { UserCreateComponent } from './user-create/user-create.component';
     UserEditComponent,
     UserEditTemplateComponent,
     ControlMessagesComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserDeleteModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

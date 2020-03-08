@@ -29,7 +29,7 @@ export class UserService {
     return this.httpClient.put<UserModel>(`${BASE_URI}/${user.userId}`, user);
   }
 
-  delete(userId: string): void {
-    this.httpClient.delete(`${BASE_URI}/${userId}`);
+  delete(userId: string): Observable<any> {
+    return this.httpClient.delete(`${BASE_URI}/${userId}`);
   }
 }

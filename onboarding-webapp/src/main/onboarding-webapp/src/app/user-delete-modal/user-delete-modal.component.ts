@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-user-delete-modal',
@@ -10,9 +11,18 @@ export class UserDeleteModalComponent implements OnInit {
 
   @Input() delete_user_modal_title;
   @Input() delete_user_modal_content;
-  constructor(public activeModal: NgbActiveModal) { }
+  @Input() fromParentList;
+
+  constructor(public activeModal: NgbActiveModal,
+              private userService: UserService) {
+  }
 
   ngOnInit(): void {
+    console.log(this.fromParentList);
+  }
+
+  deleteUser(): void {
+    this.userService.delete(this.fromParentList.userId);
   }
 
 }

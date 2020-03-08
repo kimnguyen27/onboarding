@@ -30,14 +30,10 @@ export class UserListComponent implements OnInit {
       .delete_user_modal_title = "Delete user";
     modalRef.componentInstance
       .delete_user_modal_content = `Are you sure you want to delete user "${user.username}"?`;
-    //This section is if you want to have any variable to initialize
-    //compConst.componentInstance.weight = undefined;
-  }
 
-  deleteUser(user: UserModel) {
-    this.userService.delete(user.userId);
-    // this.userService.findAllUsers().subscribe( users => {
-    //   this.users = users;
-    // });
+    modalRef.componentInstance.fromParentList = user;
+    modalRef.result.then((result) => {
+      console.log(result);
+    });
   }
 }
