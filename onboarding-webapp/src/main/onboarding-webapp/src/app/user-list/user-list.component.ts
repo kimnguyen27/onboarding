@@ -27,7 +27,7 @@ export class UserListComponent implements OnInit {
     const modalRef = this.modalService.open(UserDeleteModalComponent);
 
     modalRef.componentInstance
-      .delete_user_modal_title = "Delete user";
+      .delete_user_modal_title = "Confirm delete user";
     modalRef.componentInstance
       .delete_user_modal_content = `Are you sure you want to delete user "${user.username}"?`;
 
