@@ -7,7 +7,7 @@ import {debounceTime} from "rxjs/internal/operators";
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.scss']
+  styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit, OnDestroy {
 
