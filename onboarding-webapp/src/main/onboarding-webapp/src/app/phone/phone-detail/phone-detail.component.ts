@@ -55,7 +55,11 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
   }
 
   savePhone(): void {
+    const valueToSave = {...this.phoneEditForm.value, phoneId: this.phoneId};
 
+    this.phoneService.update(this.userId, valueToSave).subscribe(phone => {
+      this.phoneEditForm.patchValue(phone);
+    })
   }
 
   private createFormGroup(): FormGroup {
@@ -64,5 +68,4 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
       'verified': ''
     });
   }
-
 }

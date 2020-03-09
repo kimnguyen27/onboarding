@@ -14,7 +14,7 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
-    <form class="row" [formGroup]="userEditForm" (keyup.enter)="saveUser(); activeModal.close('Close click');">
+    <form class="row" [formGroup]="userEditForm" (keyup.enter)="saveUser(); activeModal.close('Close enter');">
       <div class="col-md-6">
         <div class="form-group">
           <label for="username">Username</label>

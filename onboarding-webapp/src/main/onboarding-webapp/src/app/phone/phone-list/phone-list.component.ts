@@ -14,6 +14,7 @@ import {PhoneCreateComponent} from "../phone-create/phone-create.component";
 export class PhoneListComponent implements OnInit {
 
   phones: PhoneModel[];
+  private userId: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private phoneService: PhoneService,
@@ -24,12 +25,15 @@ export class PhoneListComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.phoneService.findAllPhones(params['userId']).subscribe(phones => {
         this.phones = phones;
+        this.userId = params['userId'];
       });
     });
   }
 
   openCreateModal() {
-    this.modalService.open(PhoneCreateComponent);
+    const modalRef = this.modalService.open(PhoneCreateComponent);
+
+    modalRef.componentInstance.userId = this.userId;
   }
 
   openPhoneModal(phone: PhoneModel) {

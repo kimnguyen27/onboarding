@@ -1,15 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Subscription} from "rxjs";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {PhoneService} from "../../service/phone.service";
+import {debounceTime} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-phone-create',
   templateUrl: './phone-create.component.html',
   styleUrls: ['./phone-create.component.css']
 })
-export class PhoneCreateComponent implements OnInit {
+export class PhoneCreateComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  phoneCreateForm: FormGroup = this.createFormGroup();
+  subscriptions: Subscription[] = [];
+  @Input() userId;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder,
+              public activeModal: NgbActiveModal,
+              private phoneService: PhoneService) {
   }
 
+  ngOnInit(): void {
+    this.subscriptions.push(this.phoneCreateForm.get('phoneNumber').valueChanges
+      .pipe(
+        debounceTime(100)
+      )
+      .subscribe(v => {
+        console.log("New phoneNumber value is " + v);
+      }));
+
+    console.log(this.phoneCreateForm);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+    document.location.reload();
+  }
+
+  savePhone(): void {
+    const valueToSave = {...this.phoneCreateForm.value, userId: this.userId};
+
+    this.phoneService.create(this.userId, valueToSave).subscribe(phone => {
+      this.phoneCreateForm.patchValue(phone);
+    })
+  }
+
+  private createFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      'phoneNumber': ['', Validators.required],
+      'verified': ''
+    });
+  }
 }
