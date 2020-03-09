@@ -48,7 +48,12 @@ export class PhoneCreateComponent implements OnInit, OnDestroy {
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
-      'phoneNumber': ['', Validators.required],
+      'phoneNumber': [
+        '', [
+        Validators.required,
+        Validators.pattern(new RegExp('^\\+[1-9]\\d{1,14}$')) // Validating for e.164 phone format
+        ]
+      ],
       'verified': ''
     });
   }

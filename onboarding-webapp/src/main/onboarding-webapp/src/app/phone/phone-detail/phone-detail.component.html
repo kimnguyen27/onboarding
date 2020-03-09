@@ -14,8 +14,10 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
+    <!--  FIXME: Form allows invalid phone number when submitting with enter key  -->
     <form class="row" [formGroup]="phoneEditForm" (keyup.enter)="savePhone(); activeModal.close('Close enter');">
       <div class="col-md-6">
+        <label>Format example:<br/>+13065551234</label>
         <div class="form-group">
           <label for="phoneNumber">Phone number</label>
           <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">

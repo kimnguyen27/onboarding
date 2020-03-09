@@ -7,7 +7,8 @@ export class ValidationService {
 
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
     let config = {
-      'required': "Required field"
+      'required': "Required field",
+      'pattern': "Incorrect phone number format"
     };
 
     return config[validatorName];
