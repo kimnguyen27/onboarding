@@ -25,7 +25,7 @@ export class PhoneDeleteComponent implements OnInit, OnDestroy {
   }
 
   deletePhone(): void {
-    this.phoneService.delete(this.userId, this.fromParentList.phoneId);
+    this.phoneService.delete(this.userId, this.fromParentList.phoneId).subscribe();
     document.location.reload();
   }
 }

@@ -4,6 +4,7 @@ import {UserService} from "../../service/user.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserCreateComponent} from "../user-create/user-create.component";
 import {UserDeleteComponent} from "../user-delete/user-delete.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +16,8 @@ export class UserListComponent implements OnInit {
   users: UserModel[] = [];
 
   constructor(private userService: UserService,
-              public modalService: NgbModal) {
+              public modalService: NgbModal,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -32,8 +34,8 @@ export class UserListComponent implements OnInit {
     const modalRef = this.modalService.open(UserDeleteComponent);
 
     modalRef.componentInstance.delete_user_modal_content = `Are you sure you want to delete user "${user.username}"?`;
-
     modalRef.componentInstance.fromParentList = user;
+    modalRef.componentInstance.activatedRoute = this.activatedRoute;
     modalRef.result.then((result) => {
       console.log(result);
     });

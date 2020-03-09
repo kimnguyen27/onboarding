@@ -43,10 +43,9 @@ export class UserDetailComponent implements OnInit {
   openDeleteModal() {
     const modalRef = this.modalService.open(UserDeleteComponent);
 
-    modalRef.componentInstance.delete_user_modal_title = "Confirm delete user";
     modalRef.componentInstance
       .delete_user_modal_content = `Are you sure you want to delete user "${this.user.username}"?`;
-
+    modalRef.componentInstance.activatedRoute = this.activatedRoute;
     modalRef.componentInstance.fromParentList = this.user;
     modalRef.result.then((result) => {
       console.log(result);
