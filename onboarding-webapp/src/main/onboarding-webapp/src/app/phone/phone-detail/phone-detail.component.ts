@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {debounceTime, delay} from "rxjs/internal/operators";
 import {PhoneService} from "../../service/phone.service";
+import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-phone-detail',
@@ -20,6 +21,9 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
   @Input() phone;
   private userId: string;
   private phoneId: string;
+  private verified: boolean;
+  faCheckCircle = faCheckCircle;
+  faTimesCircle = faTimesCircle;
 
   constructor(public activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
@@ -30,6 +34,8 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.activatedRoute.params.subscribe(params => {
       this.userId = params['userId'];
       this.phoneId = this.phone.phoneId;
+      // this.verified = this.phone.verified;
+      this.verified = false;
       this.loadingSubscription = this.phoneService.get(this.userId, this.phoneId)
         .pipe(
           delay(1000)
