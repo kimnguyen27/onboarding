@@ -5,7 +5,7 @@ import {UserModel} from "../../model/user.model";
 import {PhoneModel} from "../../model/phone.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserEditComponent} from "../user-edit/user-edit.component";
-import {UserDeleteModalComponent} from "../user-delete-modal/user-delete-modal.component";
+import {UserDeleteComponent} from "../user-delete/user-delete.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -41,7 +41,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   openDeleteModal() {
-    const modalRef = this.modalService.open(UserDeleteModalComponent);
+    const modalRef = this.modalService.open(UserDeleteComponent);
 
     modalRef.componentInstance.delete_user_modal_title = "Confirm delete user";
     modalRef.componentInstance

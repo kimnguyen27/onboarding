@@ -10,7 +10,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
-import { UserDeleteModalComponent } from "./user/user-delete-modal/user-delete-modal.component";
+import { UserDeleteComponent } from "./user/user-delete/user-delete.component";
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { PhoneCreateComponent } from "./phone/phone-create/phone-create.component";
 import { PhoneDeleteComponent } from "./phone/phone-delete/phone-delete.component";
@@ -26,7 +26,7 @@ import { PhoneVerifyComponent } from './phone/phone-verify/phone-verify.componen
     UserEditComponent,
     ControlMessagesComponent,
     UserCreateComponent,
-    UserDeleteModalComponent,
+    UserDeleteComponent,
     UserDetailComponent,
     PhoneCreateComponent,
     PhoneDeleteComponent,

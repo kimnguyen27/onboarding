@@ -3,11 +3,11 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserService} from "../../service/user.service";
 
 @Component({
-  selector: 'app-user-delete-modal',
-  templateUrl: './user-delete-modal.component.html',
-  styleUrls: ['./user-delete-modal.component.css']
+  selector: 'app-user-delete',
+  templateUrl: './user-delete.component.html',
+  styleUrls: ['./user-delete.component.css']
 })
-export class UserDeleteModalComponent implements OnInit {
+export class UserDeleteComponent implements OnInit {
 
   @Input() delete_user_modal_content;
   @Input() fromParentList;
@@ -23,5 +23,4 @@ export class UserDeleteModalComponent implements OnInit {
   deleteUser(): void {
     this.userService.delete(this.fromParentList.userId);
   }
-
 }

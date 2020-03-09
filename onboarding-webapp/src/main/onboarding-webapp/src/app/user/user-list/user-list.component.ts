@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UserModel} from "../../model/user.model";
 import {UserService} from "../../service/user.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {UserDeleteModalComponent} from "../user-delete-modal/user-delete-modal.component";
 import {UserCreateComponent} from "../user-create/user-create.component";
+import {UserDeleteComponent} from "../user-delete/user-delete.component";
 
 @Component({
   selector: 'app-user-list',
@@ -29,7 +29,7 @@ export class UserListComponent implements OnInit {
   }
 
   openDeleteModal(user: UserModel) {
-    const modalRef = this.modalService.open(UserDeleteModalComponent);
+    const modalRef = this.modalService.open(UserDeleteComponent);
 
     modalRef.componentInstance.delete_user_modal_content = `Are you sure you want to delete user "${user.username}"?`;
 
