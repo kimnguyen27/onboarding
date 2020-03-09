@@ -21,10 +21,10 @@ export class UserDeleteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    document.location.reload();
   }
 
   deleteUser(): void {
     this.userService.delete(this.fromParentList.userId);
+    document.location.reload();
   }
 }

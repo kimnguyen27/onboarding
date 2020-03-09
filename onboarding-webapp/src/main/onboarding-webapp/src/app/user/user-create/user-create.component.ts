@@ -34,7 +34,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
-    document.location.reload();
   }
 
   saveUser(): void {
@@ -42,7 +41,8 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
     this.userService.create(valueToSave).subscribe(user => {
       this.userCreateForm.patchValue(user);
-    })
+    });
+    document.location.reload();
   }
 
   private createFormGroup(): FormGroup {

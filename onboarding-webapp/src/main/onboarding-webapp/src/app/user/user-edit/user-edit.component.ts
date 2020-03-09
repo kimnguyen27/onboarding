@@ -49,7 +49,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
-    document.location.reload();
   }
 
   saveUser(): void {
@@ -57,7 +56,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
      this.userService.update(valueToSave).subscribe(user => {
        this.userEditForm.patchValue(user);
-     })
+     });
+    document.location.reload();
   }
 
   private createFormGroup(): FormGroup {
@@ -67,5 +67,4 @@ export class UserEditComponent implements OnInit, OnDestroy {
       'lastName': ['', Validators.required]
     });
   }
-
 }

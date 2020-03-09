@@ -22,10 +22,10 @@ export class PhoneDeleteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    document.location.reload();
   }
 
   deletePhone(): void {
     this.phoneService.delete(this.userId, this.fromParentList.phoneId);
+    document.location.reload();
   }
 }

@@ -51,7 +51,6 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
-    document.location.reload();
   }
 
   savePhone(): void {
@@ -59,7 +58,8 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
 
     this.phoneService.update(this.userId, valueToSave).subscribe(phone => {
       this.phoneEditForm.patchValue(phone);
-    })
+    });
+    document.location.reload();
   }
 
   private createFormGroup(): FormGroup {
