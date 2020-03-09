@@ -6,6 +6,7 @@ import {PhoneDetailComponent} from "../phone-detail/phone-detail.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PhoneCreateComponent} from "../phone-create/phone-create.component";
 import {PhoneDeleteComponent} from "../phone-delete/phone-delete.component";
+import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-phone-list',
@@ -16,6 +17,8 @@ export class PhoneListComponent implements OnInit {
 
   phones: PhoneModel[];
   private userId: string;
+  faCheckCircle = faCheckCircle;
+  faTimesCircle = faTimesCircle;
 
   constructor(private activatedRoute: ActivatedRoute,
               private phoneService: PhoneService,

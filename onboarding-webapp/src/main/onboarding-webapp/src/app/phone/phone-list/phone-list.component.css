@@ -5,3 +5,11 @@
 .deletePhoneCell {
   text-align: center;
 }
+
+.fa-times-circle {
+  color: #d9534f;
+}
+
+.fa-check-circle {
+  color: #5cb85c;
+}

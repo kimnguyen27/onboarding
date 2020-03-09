@@ -9,7 +9,12 @@
   <tbody>
   <tr *ngFor="let phone of phones;" class="phonesRow">
     <td (click)="openPhoneModal(phone)">{{phone.phoneNumber}}</td>
-    <td (click)="openPhoneModal(phone)">{{phone.verified}}</td>
+    <td (click)="openPhoneModal(phone)" *ngIf="!phone.verified">
+      <fa-icon class="fa-times-circle" [icon]="faTimesCircle"></fa-icon>
+    </td>
+    <td (click)="openPhoneModal(phone)" *ngIf="phone.verified">
+      <fa-icon class="fa-check-circle" [icon]="faCheckCircle"></fa-icon>
+    </td>
     <td class="deletePhoneCell">
       <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(phone)">&times;</button>
     </td>
