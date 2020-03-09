@@ -1,3 +1,20 @@
-<ul *ngFor="let phone of phones" class="list-group">
-  <li class="list-group-item">{{phones}}</li>
-</ul>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th>Phone Number</th>
+    <th>Verified?</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let phone of phones;" class="phonesRow">
+    <td>{{phone.phoneNumber}}</td>
+    <td>{{phone.verified}}</td>
+    <td class="deletePhoneCell">
+      <button type="button" class="btn btn-outline-danger">&times;</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-info">Add</button>

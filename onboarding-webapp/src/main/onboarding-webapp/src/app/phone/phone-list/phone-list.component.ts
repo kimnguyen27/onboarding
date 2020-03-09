@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PhoneModel} from "../../model/phone.model";
 import {PhoneService} from "../../service/phone.service";
 import {ActivatedRoute} from "@angular/router";
@@ -10,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PhoneListComponent implements OnInit {
 
-  @Input() user;
   phones: PhoneModel[];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -19,7 +18,7 @@ export class PhoneListComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.phoneService.findAllPhones(this.user.userId).subscribe(phones => {
+      this.phoneService.findAllPhones(params['userId']).subscribe(phones => {
         this.phones = phones;
       });
     });
