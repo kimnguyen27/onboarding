@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PhoneModel} from "../../model/phone.model";
 import {PhoneService} from "../../service/phone.service";
 import {ActivatedRoute} from "@angular/router";
+import {PhoneDetailComponent} from "../phone-detail/phone-detail.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-phone-list',
@@ -13,7 +15,8 @@ export class PhoneListComponent implements OnInit {
   phones: PhoneModel[];
 
   constructor(private activatedRoute: ActivatedRoute,
-              private phoneService: PhoneService) {
+              private phoneService: PhoneService,
+              public modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -24,4 +27,13 @@ export class PhoneListComponent implements OnInit {
     });
   }
 
+  openPhoneModal(phone: PhoneModel) {
+    const modalRef = this.modalService.open(PhoneDetailComponent);
+
+    modalRef.componentInstance.activatedRoute = this.activatedRoute;
+    modalRef.componentInstance.phone = phone;
+    // modalRef.result.then((result) => {
+    //   console.log(result);
+    // });
+  }
 }

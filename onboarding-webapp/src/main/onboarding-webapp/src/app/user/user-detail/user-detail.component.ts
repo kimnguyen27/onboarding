@@ -35,8 +35,6 @@ export class UserDetailComponent implements OnInit {
     const modalRef = this.modalService.open(UserEditComponent);
 
     modalRef.componentInstance.activatedRoute = this.activatedRoute;
-
-    // modalRef.componentInstance.fromParentList = user;
     // modalRef.result.then((result) => {
     //   console.log(result);
     // });

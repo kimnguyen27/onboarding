@@ -16,8 +16,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   loadingSubscription: Subscription = Subscription.EMPTY;
 
-  private userId: string;
   @Input() activatedRoute;
+  private userId: string;
 
   constructor(private formBuilder: FormBuilder,
               //private activatedRoute: ActivatedRoute,

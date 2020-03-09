@@ -8,8 +8,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let phone of phones;" class="phonesRow">
-    <td>{{phone.phoneNumber}}</td>
-    <td>{{phone.verified}}</td>
+    <td (click)="openPhoneModal(phone)">{{phone.phoneNumber}}</td>
+    <td (click)="openPhoneModal(phone)">{{phone.verified}}</td>
     <td class="deletePhoneCell">
       <button type="button" class="btn btn-outline-danger">&times;</button>
     </td>
