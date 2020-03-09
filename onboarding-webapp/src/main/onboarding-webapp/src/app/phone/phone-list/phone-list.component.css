@@ -1,0 +1,7 @@
+.phonesRow:hover {
+  background-color: #dee2e6;
+}
+
+.deletePhoneCell {
+  text-align: center;
+}
