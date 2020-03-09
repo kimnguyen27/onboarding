@@ -34,6 +34,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+    document.location.reload();
   }
 
   saveUser(): void {
