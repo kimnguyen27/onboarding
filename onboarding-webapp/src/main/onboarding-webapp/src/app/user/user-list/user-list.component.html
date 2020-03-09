@@ -14,7 +14,7 @@
     <td routerLink="/users/{{user.userId}}">{{user.lastName}}</td>
     <td routerLink="/users/{{user.userId}}">{{user.username}}</td>
     <td class="deleteUserCell">
-      <button type="button" class="btn btn-outline-danger" (click)="openModal(user)">
+      <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(user)">
         &times;</button>
     </td>
   </tr>

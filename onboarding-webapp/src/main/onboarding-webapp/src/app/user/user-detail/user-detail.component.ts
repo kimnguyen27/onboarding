@@ -5,6 +5,7 @@ import {UserModel} from "../../model/user.model";
 import {PhoneModel} from "../../model/phone.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserEditComponent} from "../user-edit/user-edit.component";
+import {UserDeleteModalComponent} from "../user-delete-modal/user-delete-modal.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -30,7 +31,7 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
-  openModal() {
+  openEditModal() {
     const modalRef = this.modalService.open(UserEditComponent);
 
     modalRef.componentInstance.activatedRoute = this.activatedRoute;
@@ -41,4 +42,16 @@ export class UserDetailComponent implements OnInit {
     // });
   }
 
+  openDeleteModal() {
+    const modalRef = this.modalService.open(UserDeleteModalComponent);
+
+    modalRef.componentInstance.delete_user_modal_title = "Confirm delete user";
+    modalRef.componentInstance
+      .delete_user_modal_content = `Are you sure you want to delete user "${this.user.username}"?`;
+
+    modalRef.componentInstance.fromParentList = this.user;
+    modalRef.result.then((result) => {
+      console.log(result);
+    });
+  }
 }
