@@ -9,7 +9,6 @@ import {UserService} from "../../service/user.service";
 })
 export class UserDeleteModalComponent implements OnInit {
 
-  @Input() delete_user_modal_title;
   @Input() delete_user_modal_content;
   @Input() fromParentList;
 

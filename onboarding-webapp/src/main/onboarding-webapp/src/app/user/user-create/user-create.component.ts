@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {UserService} from "../../service/user.service";
 import {debounceTime} from "rxjs/internal/operators";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-create',
@@ -15,6 +16,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
+              public activeModal: NgbActiveModal,
               private userService: UserService) {
   }
 

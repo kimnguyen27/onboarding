@@ -59,11 +59,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
      })
   }
 
-  passBack() {
-    this.activeModal.close(this.userService.get(this.userId));
-  }
-
-
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
       'username': '',
