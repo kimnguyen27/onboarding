@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserService} from "../../service/user.service";
 
@@ -7,7 +7,7 @@ import {UserService} from "../../service/user.service";
   templateUrl: './user-delete.component.html',
   styleUrls: ['./user-delete.component.css']
 })
-export class UserDeleteComponent implements OnInit {
+export class UserDeleteComponent implements OnInit, OnDestroy {
 
   @Input() delete_user_modal_content;
   @Input() fromParentList;
@@ -18,6 +18,10 @@ export class UserDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.fromParentList);
+  }
+
+  ngOnDestroy() {
+    document.location.reload();
   }
 
   deleteUser(): void {

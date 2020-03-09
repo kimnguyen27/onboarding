@@ -11,7 +11,7 @@
     <td (click)="openPhoneModal(phone)">{{phone.phoneNumber}}</td>
     <td (click)="openPhoneModal(phone)">{{phone.verified}}</td>
     <td class="deletePhoneCell">
-      <button type="button" class="btn btn-outline-danger">&times;</button>
+      <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(phone)">&times;</button>
     </td>
   </tr>
   </tbody>

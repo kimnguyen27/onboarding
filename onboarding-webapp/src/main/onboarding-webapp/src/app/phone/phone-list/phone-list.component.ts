@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PhoneDetailComponent} from "../phone-detail/phone-detail.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PhoneCreateComponent} from "../phone-create/phone-create.component";
+import {PhoneDeleteComponent} from "../phone-delete/phone-delete.component";
 
 @Component({
   selector: 'app-phone-list',
@@ -44,5 +45,18 @@ export class PhoneListComponent implements OnInit {
     // modalRef.result.then((result) => {
     //   console.log(result);
     // });
+  }
+
+  openDeleteModal(phone: PhoneModel) {
+    const modalRef = this.modalService.open(PhoneDeleteComponent);
+
+    modalRef.componentInstance
+      .delete_phone_modal_content = `Are you sure you want to delete phone "${phone.phoneNumber}"?`;
+
+    modalRef.componentInstance.fromParentList = phone;
+    modalRef.componentInstance.userId = this.userId;
+    modalRef.result.then((result) => {
+      console.log(result);
+    });
   }
 }
