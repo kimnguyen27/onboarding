@@ -20,8 +20,13 @@
         <label>Format example:<br/>+13065551234</label>
         <div class="form-group">
           <label for="phoneNumber">Phone number</label>
-          <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
-          <app-control-messages [control]="phoneEditForm.get('phoneNumber')"></app-control-messages>
+          <div *ngIf="verified">
+            <h5>{{phoneNumber}}</h5>
+          </div>
+          <div *ngIf="!verified">
+            <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+            <app-control-messages [control]="phoneEditForm.get('phoneNumber')"></app-control-messages>
+          </div>
         </div>
         <div class="form-group">
           <label>Verification status</label>
@@ -32,10 +37,10 @@
             <fa-icon class="fa-times-circle" [icon]="faTimesCircle" size="2x"></fa-icon>
           </div>
         </div>
-<!--        <div *ngIf="!verified" class="form-group">-->
-<!--          <label>Verification Code:</label>-->
-<!--          <input type="text" readonly class="form-control" id="verified" formControlName="verified">-->
-<!--        </div>-->
+        <!--        <div *ngIf="!verified" class="form-group">-->
+        <!--          <label>Verification Code:</label>-->
+        <!--          <input type="text" readonly class="form-control" id="verified" formControlName="verified">-->
+        <!--        </div>-->
       </div>
       <div class="col-md-6">
         <pre>
@@ -47,6 +52,9 @@
 </ng-container>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
-  <button type="button" class="btn btn-info" (click)="savePhone(); activeModal.close('Save click');"
-          [disabled]="!phoneEditForm.valid">Save</button>
+  <div *ngIf="!verified">
+    <button type="button" class="btn btn-info"
+            (click)="savePhone(); activeModal.close('Save click');"
+            [disabled]="!phoneEditForm.valid">Save</button>
+  </div>
 </div>

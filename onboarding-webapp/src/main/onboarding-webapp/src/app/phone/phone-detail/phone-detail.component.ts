@@ -21,6 +21,7 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
   @Input() phone;
   private userId: string;
   private phoneId: string;
+  private phoneNumber: string;
   private verified: boolean;
   faCheckCircle = faCheckCircle;
   faTimesCircle = faTimesCircle;
@@ -34,6 +35,7 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.activatedRoute.params.subscribe(params => {
       this.userId = params['userId'];
       this.phoneId = this.phone.phoneId;
+      this.phoneNumber = this.phone.phoneNumber;
       this.verified = this.phone.verified;
       this.loadingSubscription = this.phoneService.get(this.userId, this.phoneId)
         .pipe(
