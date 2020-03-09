@@ -36,4 +36,6 @@
 </ng-container>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" class="btn btn-info" (click)="savePhone(); activeModal.close('Save click');"
+          [disabled]="!phoneEditForm.valid">Save</button>
 </div>

@@ -12,12 +12,11 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserDeleteModalComponent } from "./user/user-delete-modal/user-delete-modal.component";
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
-import { CreatePhoneComponent } from './phone/create-phone/create-phone.component';
-import { DeletePhoneComponent } from './phone/delete-phone/delete-phone.component';
-import { EditPhoneComponent } from './phone/edit-phone/edit-phone.component';
+import { PhoneCreateComponent } from "./phone/phone-create/phone-create.component";
+import { PhoneDeleteComponent } from "./phone/phone-delete/phone-delete.component";
 import { PhoneListComponent } from './phone/phone-list/phone-list.component';
 import { PhoneDetailComponent } from './phone/phone-detail/phone-detail.component';
-import { VerifyPhoneComponent } from './phone/verify-phone/verify-phone.component';
+import { PhoneVerifyComponent } from './phone/phone-verify/phone-verify.component';
 
 
 @NgModule({
@@ -29,12 +28,11 @@ import { VerifyPhoneComponent } from './phone/verify-phone/verify-phone.componen
     UserCreateComponent,
     UserDeleteModalComponent,
     UserDetailComponent,
-    CreatePhoneComponent,
-    DeletePhoneComponent,
-    EditPhoneComponent,
+    PhoneCreateComponent,
+    PhoneDeleteComponent,
     PhoneListComponent,
     PhoneDetailComponent,
-    VerifyPhoneComponent
+    PhoneVerifyComponent
   ],
   imports: [
     BrowserModule,

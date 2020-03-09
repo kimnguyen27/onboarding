@@ -4,6 +4,7 @@ import {PhoneService} from "../../service/phone.service";
 import {ActivatedRoute} from "@angular/router";
 import {PhoneDetailComponent} from "../phone-detail/phone-detail.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {PhoneCreateComponent} from "../phone-create/phone-create.component";
 
 @Component({
   selector: 'app-phone-list',
@@ -25,6 +26,10 @@ export class PhoneListComponent implements OnInit {
         this.phones = phones;
       });
     });
+  }
+
+  openCreateModal() {
+    this.modalService.open(PhoneCreateComponent);
   }
 
   openPhoneModal(phone: PhoneModel) {
