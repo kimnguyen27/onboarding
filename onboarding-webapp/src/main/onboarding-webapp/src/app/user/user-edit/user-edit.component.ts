@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../service/user.service";
+import {UserService} from "../../service/user.service";
 import {Subscription} from "rxjs";
 import {debounceTime, delay} from "rxjs/internal/operators";
 

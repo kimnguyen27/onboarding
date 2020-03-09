@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UserListComponent} from "./user-list/user-list.component";
-import {UserEditComponent} from "./user-edit/user-edit.component";
+import {UserListComponent} from "./user/user-list/user-list.component";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {UserCreateComponent} from "./user-create/user-create.component";
+import {UserCreateComponent} from "./user/user-create/user-create.component";
+import {UserDetailComponent} from "./user/user-detail/user-detail.component";
 
 const routes: Routes = [
   {
@@ -23,7 +23,18 @@ const routes: Routes = [
       {
         path: ':userId',
         pathMatch: 'full',
-        component: UserEditComponent
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: UserDetailComponent
+          },
+          // {
+          //   path: 'phones',
+          //   pathMatch: 'full',
+          //   component: PhoneListComponent
+          // }
+        ]
       }
     ]
   },

@@ -4,14 +4,14 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
-import { UserEditTemplateComponent } from './user-edit-template/user-edit-template.component';
-import { UserCreateComponent } from './user-create/user-create.component';
-import { UserDeleteModalComponent } from "./user-delete-modal/user-delete-modal.component";
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { UserDeleteModalComponent } from "./user/user-delete-modal/user-delete-modal.component";
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
 
 @NgModule({
@@ -19,10 +19,10 @@ import { UserDeleteModalComponent } from "./user-delete-modal/user-delete-modal.
     AppComponent,
     UserListComponent,
     UserEditComponent,
-    UserEditTemplateComponent,
     ControlMessagesComponent,
     UserCreateComponent,
-    UserDeleteModalComponent
+    UserDeleteModalComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

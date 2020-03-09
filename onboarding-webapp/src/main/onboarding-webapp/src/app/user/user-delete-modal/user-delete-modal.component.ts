@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {UserService} from "../service/user.service";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-user-delete-modal',
