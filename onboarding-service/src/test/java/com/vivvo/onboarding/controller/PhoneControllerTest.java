@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.ws.rs.NotFoundException;
 
+import java.util.UUID;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -34,16 +36,19 @@ public class PhoneControllerTest {
     @Test
     public void testCreate_whenValid_shouldCreatePhone() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient
+                .createPhone(createdUserDto.getUserId(), newValidPhoneDto(createdUserDto));
         assertNotNull(createdPhoneDto.getPhoneId());
     }
 
     @Test
     public void testCreateAndUpdate_whenValid_shouldUpdateSuccessfully() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient
+                .createPhone(createdUserDto.getUserId(), newValidPhoneDto(createdUserDto));
         String phoneNumber = "+13060000000";
-        PhoneDto updatedPhoneDto = userClient.updatePhone(createdPhoneDto.setPhoneNumber(phoneNumber));
+        PhoneDto updatedPhoneDto = userClient
+                .updatePhone(createdUserDto.getUserId(), createdPhoneDto.setPhoneNumber(phoneNumber));
 
         assertEquals(phoneNumber, updatedPhoneDto.getPhoneNumber());
     }
@@ -51,7 +56,8 @@ public class PhoneControllerTest {
     @Test
     public void testCreateAndDelete_whenValid_shouldDeleteSuccessfully() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient
+                .createPhone(createdUserDto.getUserId(), newValidPhoneDto(createdUserDto));
         PhoneDto getDto = userClient.getPhone(createdPhoneDto.getUserId(), createdPhoneDto.getPhoneId());
 
         assertNotNull(getDto);
@@ -70,7 +76,8 @@ public class PhoneControllerTest {
     @Test
     public void testCreateAndDeleteTwice_secondDeleteShouldReturnNotFound() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient
+                .createPhone(createdUserDto.getUserId(), newValidPhoneDto(createdUserDto));
         PhoneDto getDto = userClient.getPhone(createdPhoneDto.getUserId(), createdPhoneDto.getPhoneId());
 
         assertNotNull(getDto);
@@ -88,11 +95,14 @@ public class PhoneControllerTest {
     @Test
     public void testCreateAndVerify_whenValid_shouldVerifyPhone() {
         UserDto createdUserDto = userClient.create(newValidUserDto());
-        PhoneDto createdPhoneDto = userClient.createPhone(newValidPhoneDto(createdUserDto));
+        PhoneDto createdPhoneDto = userClient
+                .createPhone(createdUserDto.getUserId(), newValidPhoneDto(createdUserDto));
 
         userClient.beginVerification(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
-        PhoneDto primedPhoneDto = userClient.getPhone(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
-        PhoneDto verifiedPhoneDto = userClient.verifyPhone(primedPhoneDto.getUserId(), primedPhoneDto.getPhoneId(),
+        PhoneDto primedPhoneDto = userClient
+                .getPhone(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
+        PhoneDto verifiedPhoneDto = userClient
+                .verifyPhone(primedPhoneDto.getUserId(), primedPhoneDto.getPhoneId(),
                 primedPhoneDto.getVerificationCode());
 
         assertTrue(verifiedPhoneDto.getVerified());
@@ -100,6 +110,7 @@ public class PhoneControllerTest {
 
     private UserDto newValidUserDto() {
         return new UserDto()
+                .setUserId(UUID.fromString("b1a6747f-2282-4ea6-99a8-0d713c893b2d"))
                 .setFirstName("Kim")
                 .setLastName("Nguyen")
                 .setUsername("nguyenk");
