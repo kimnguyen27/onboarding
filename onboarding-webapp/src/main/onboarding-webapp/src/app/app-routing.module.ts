@@ -23,18 +23,7 @@ const routes: Routes = [
       {
         path: ':userId',
         pathMatch: 'full',
-        children: [
-          {
-            path: '',
-            pathMatch: 'full',
-            component: UserDetailComponent
-          },
-          // {
-          //   path: 'phones',
-          //   pathMatch: 'full',
-          //   component: PhoneListComponent
-          // }
-        ]
+        component: UserDetailComponent
       }
     ]
   },

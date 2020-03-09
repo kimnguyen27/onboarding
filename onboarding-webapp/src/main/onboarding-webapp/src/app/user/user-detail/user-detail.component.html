@@ -1,1 +1,30 @@
-<p>user-detail works!</p>
+<h3>User detail</h3>
+<div>
+  <button type="button" class="btn btn-outline-secondary" routerLink="/users/">Back</button>
+</div>
+<br/>
+<ul class="list-group list-group-horizontal">
+  <li class="list-group-item flex-fill">
+    <label>First Name:</label>
+    <h5>{{user?.firstName}}</h5>
+  </li>
+  <li class="list-group-item flex-fill">
+    <label>Last Name:</label>
+    <h5>{{user?.lastName}}</h5>
+  </li>
+  <li class="list-group-item flex-fill">
+    <label>Username:</label>
+    <h5>{{user?.username}}</h5>
+  </li>
+</ul>
+<br/>
+<button type="button" class="btn btn-secondary" (click)="openModal()">Edit</button>
+<button type="button" class="btn btn-danger">Delete</button>
+<br/>
+<!--<div class="col-md-6">-->
+<!--    <pre>-->
+<!--      {{this.user | json}}-->
+<!--    </pre>-->
+<!--</div>-->
+<br/>
+<app-phone-list></app-phone-list>

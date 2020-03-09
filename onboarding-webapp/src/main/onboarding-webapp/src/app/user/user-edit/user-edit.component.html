@@ -1,37 +1,51 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="delUserModalLongTitle">Edit user</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="close"
+          (click)="activeModal.close('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <div *ngIf="!loadingSubscription.closed">
-  <h1>LOADING</h1>
+  <h1 class="loading">LOADING</h1>
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
-  <h3>Edit user</h3>
-  <form class="row" [formGroup]="userEditForm" (keyup.enter)="saveUser()">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" readonly class="form-control" id="username" formControlName="username">
+  <div class="modal-body">
+    <form class="row" [formGroup]="userEditForm" (keyup.enter)="saveUser()">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" readonly class="form-control" id="username" formControlName="username">
+        </div>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
+          <app-control-messages [control]="userEditForm.get('firstName')"></app-control-messages>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
+          <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
+        </div>
+        <!--        <button type="button" class="btn btn-info" (click)="saveUser()"-->
+        <!--                [disabled]="!userEditForm.valid">Save</button>-->
+        <!--        <br/>-->
+        <!--        <br/>-->
+        <!--        <button type="button" class="btn btn-secondary" routerLink="/users/">Back</button>-->
       </div>
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" formControlName="firstName">
-        <app-control-messages [control]="userEditForm.get('firstName')"></app-control-messages>
+      <div class="col-md-6">
+        <pre>
+          {{this.userEditForm.value | json}}
+        </pre>
       </div>
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" formControlName="lastName">
-        <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
-      </div>
-      <button type="button" class="btn btn-info" (click)="saveUser()"
-              [disabled]="!userEditForm.valid">Save</button>
-      <br/>
-      <br/>
-      <button type="button" class="btn btn-secondary" routerLink="/users/">Back</button>
-    </div>
-    <div class="col-md-6">
-    <pre>
-      {{this.userEditForm.value | json}}
-    </pre>
-    </div>
-  </form>
+    </form>
+  </div>
 </ng-container>
+<div class="modal-footer">
+  <!--  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>-->
+  <button type="button" class="btn btn-info" (click)="saveUser(); activeModal.close('Close click');"
+          [disabled]="!userEditForm.valid">Save</button>
+</div>
+
 
 
 

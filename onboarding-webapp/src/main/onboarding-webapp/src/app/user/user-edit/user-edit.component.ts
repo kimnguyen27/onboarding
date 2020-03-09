@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {Subscription} from "rxjs";
 import {debounceTime, delay} from "rxjs/internal/operators";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-edit',
@@ -17,9 +17,11 @@ export class UserEditComponent implements OnInit, OnDestroy {
   loadingSubscription: Subscription = Subscription.EMPTY;
 
   private userId: string;
+  @Input() activatedRoute;
 
   constructor(private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute,
+              //private activatedRoute: ActivatedRoute,
+              public activeModal: NgbActiveModal,
               private userService: UserService) {
   }
 
@@ -55,6 +57,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
      this.userService.update(valueToSave).subscribe(user => {
        this.userEditForm.patchValue(user);
      })
+  }
+
+  passBack() {
+    this.activeModal.close(this.userService.get(this.userId));
   }
 
 

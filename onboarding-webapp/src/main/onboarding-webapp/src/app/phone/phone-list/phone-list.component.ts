@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {PhoneModel} from "../../model/phone.model";
+import {PhoneService} from "../../service/phone.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-phone-list',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhoneListComponent implements OnInit {
 
-  constructor() { }
+  @Input() user;
+  phones: PhoneModel[];
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private phoneService: PhoneService) {
+  }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.phoneService.findAllPhones(this.user.userId).subscribe(phones => {
+        this.phones = phones;
+      });
+    });
   }
 
 }

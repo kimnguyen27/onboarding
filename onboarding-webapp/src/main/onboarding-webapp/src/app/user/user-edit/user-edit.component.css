@@ -1,0 +1,7 @@
+.close:focus {
+  outline: none;
+}
+
+.loading {
+  text-align: center;
+}
