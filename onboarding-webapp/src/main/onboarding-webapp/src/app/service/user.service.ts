@@ -13,23 +13,23 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  findAllUsers(): Observable<UserModel[]> {
+  public findAllUsers(): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(BASE_URI);
   }
 
-  create(user: UserModel): Observable<UserModel> {
+  public create(user: UserModel): Observable<UserModel> {
     return this.httpClient.post<UserModel>(`${BASE_URI}`, user);
   }
 
-  get(userId: string): Observable<UserModel> {
+  public get(userId: string): Observable<UserModel> {
     return this.httpClient.get<UserModel>(`${BASE_URI}/${userId}`);
   }
 
-  update(user: UserModel): Observable<UserModel> {
+  public update(user: UserModel): Observable<UserModel> {
     return this.httpClient.put<UserModel>(`${BASE_URI}/${user.userId}`, user);
   }
 
-  delete(userId: string): Observable<any> {
+  public delete(userId: string): Observable<any> {
     return this.httpClient.delete(`${BASE_URI}/${userId}`);
   }
 }

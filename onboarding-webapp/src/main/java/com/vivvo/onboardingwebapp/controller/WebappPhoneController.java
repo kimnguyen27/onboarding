@@ -1,7 +1,7 @@
-package com.vivvo.onboarding;
+package com.vivvo.onboardingwebapp.controller;
 
+import com.vivvo.onboarding.client.UserClient;
 import com.vivvo.onboarding.dto.PhoneDto;
-import com.vivvo.onboarding.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,49 +11,48 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/users/{userId}/phones")
-public class PhoneController {
+public class WebappPhoneController {
 
     @Autowired
-    private PhoneService phoneService;
+    private UserClient userClient;
 
     @GetMapping
     public List<PhoneDto> getPhoneList(@PathVariable("userId") UUID userId) {
-        return phoneService.findPhonesByUserId(userId); }
+        return userClient.findPhonesByUserId(userId); }
 
     @GetMapping("/{phoneId}")
     public PhoneDto get(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId) {
-        return phoneService.get(userId, phoneId); }
+        return userClient.getPhone(userId, phoneId); }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PhoneDto create(@PathVariable("userId") UUID userId, @RequestBody PhoneDto dto) {
-        return phoneService.create(userId, dto);
+        return userClient.createPhone(userId, dto);
     }
 
     @PutMapping("/{phoneId}")
     public PhoneDto update(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId,
                            @RequestBody PhoneDto dto) {
         dto.setPhoneId(phoneId);
-        return phoneService.update(userId, dto);
+        return userClient.updatePhone(userId, dto);
     }
 
     @DeleteMapping("/{phoneId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("phoneId") UUID phoneId) {
-        phoneService.delete(phoneId);
+    public void delete(@PathVariable("userId") UUID userId, @PathVariable("phoneId") UUID phoneId) {
+        userClient.deletePhone(userId, phoneId);
     }
 
     @PostMapping("/{phoneId}/sendVerificationCode")
     public void sendVerificationCode(@PathVariable("userId") UUID userId,
-                                         @PathVariable("phoneId") UUID phoneId) {
-        phoneService.verifyInit(userId, phoneId);
+                                     @PathVariable("phoneId") UUID phoneId) {
+        userClient.beginVerification(userId, phoneId);
     }
 
     @PostMapping("/{phoneId}/submitVerificationCode/{verificationCode}")
     public PhoneDto submitVerificationCode(@PathVariable("userId") UUID userId,
                                            @PathVariable("phoneId") UUID phoneId,
                                            @PathVariable("verificationCode") String verificationCode) {
-        return phoneService.verifyAttempt(userId, phoneId, verificationCode);
+        return userClient.verifyPhone(userId, phoneId, verificationCode);
     }
-
 }

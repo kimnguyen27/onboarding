@@ -67,14 +67,20 @@ public class UserClient {
 
     // Phone methods
 
-    public PhoneDto createPhone(PhoneDto dto) {
-        return phoneTarget(dto.getUserId())
+    public List<PhoneDto> findPhonesByUserId(UUID userId) {
+        return phoneTarget(userId)
+                .request()
+                .get(new GenericType<List<PhoneDto>>(){});
+    }
+
+    public PhoneDto createPhone(UUID userId,PhoneDto dto) {
+        return phoneTarget(userId)
                 .request()
                 .post(Entity.json(dto), PhoneDto.class);
     }
 
-    public PhoneDto updatePhone(PhoneDto dto) {
-        return phoneTarget(dto.getUserId(), dto.getPhoneId())
+    public PhoneDto updatePhone(UUID userId, PhoneDto dto) {
+        return phoneTarget(userId, dto.getPhoneId())
                 .request()
                 .put(Entity.json(dto), PhoneDto.class);
     }
