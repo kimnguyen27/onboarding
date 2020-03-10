@@ -5,11 +5,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div *ngIf="!verified" class="prompt col-md-12">
-  <br/>
-  <h6>{{prompt}}</h6>
-</div>
-<app-phone-verify-content></app-phone-verify-content>
+<app-phone-verify-content [phone]="phone" [userId]="userId" [verified]="verified"></app-phone-verify-content>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 </div>

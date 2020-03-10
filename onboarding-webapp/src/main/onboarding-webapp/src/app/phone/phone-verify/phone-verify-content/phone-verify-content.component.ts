@@ -1,54 +1,63 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
-import { PhoneModel } from "../../../model/phone.model";
-import {debounceTime, delay} from "rxjs/internal/operators";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import {PhoneVerifyComponent} from "../phone-verify.component";
+import {PhoneService} from "../../../service/phone.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-phone-verify-content',
   templateUrl: './phone-verify-content.component.html',
   styleUrls: ['./phone-verify-content.component.css']
 })
-export class PhoneVerifyContentComponent extends PhoneVerifyComponent implements OnInit, OnDestroy {
+export class PhoneVerifyContentComponent implements OnInit, OnDestroy {
 
-  subscriptions: Subscription[] = [];
-
+  protected phoneVerifyForm: FormGroup = this.createFormGroup();
   private code: string;
   faCheckCircle = faCheckCircle;
 
-  ngOnInit(): void {
-    // this.subscriptions.push(super.activatedRoute.params.subscribe(() => {
-    //   this.loadingSubscription = this.phoneService.get(super.userId, this.phone.phoneId)
-    //     .pipe(
-    //       delay(1000)
-    //     ).subscribe(phone => {
-    //       this.phoneVerifyForm.patchValue(phone);
-    //     });
-    // }));
+  @Input() userId;
+  @Input() phone;
+  @Input() verified;
 
-    this.subscriptions.push(this.phoneVerifyForm.get('verificationCode').valueChanges
-      .pipe(
-        debounceTime(100)
-      )
-      .subscribe(v => {
-        console.log("New verificationCode value is " + v);
-      }));
+  constructor(private activatedRoute: ActivatedRoute,
+              private phoneService: PhoneService,
+              private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void {
+    this.verifyInit();
+
     console.log(this.phoneVerifyForm);
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+
   verifyInit(): void {
-    //this.phoneService.sendVerificationCode(super.userId, this.phone.phoneId);
+    this.phoneService.sendVerificationCode(this.userId, this.phone.phoneId).subscribe();
   }
 
   verifyAttempt(): void {
-    //this.phoneService.submitVerificationCode(super.userId, this.phone.phoneId, this.code);
-    // document.location.reload();
+    this.code = this.phoneVerifyForm.controls['verificationCode'].value;
+    console.log("Submitting code: " + this.code);
+    this.phoneService.submitVerificationCode(this.userId, this.phone.phoneId, this.code).subscribe();
+    // FIXME: Modal closes on reload
+    document.location.reload();
+  }
+
+  protected createFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      'verificationCode': [
+        '', [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          Validators.pattern(new RegExp('^[0-9]*$'))
+        ]
+      ]
+      //'verified': 'false'
+    });
   }
 
 }

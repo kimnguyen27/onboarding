@@ -1,5 +1,9 @@
 <ng-container *ngIf="!verified">
   <div class="modal-body">
+    <div class="prompt col-md-12">
+      <br/>
+      <h6>A verification code has been sent to the phone number {{phone.phoneNumber}}</h6>
+    </div>
     <form class="row" [formGroup]="phoneVerifyForm" (keyup.enter)="verifyAttempt()">
       <div class="col-md-6">
         <div class="form-group">
