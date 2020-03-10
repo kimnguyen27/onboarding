@@ -22,7 +22,7 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
   private userId: string;
   private phoneId: string;
   private phoneNumber: string;
-  private verified: boolean;
+  public verified: boolean;
   faCheckCircle = faCheckCircle;
   faTimesCircle = faTimesCircle;
 

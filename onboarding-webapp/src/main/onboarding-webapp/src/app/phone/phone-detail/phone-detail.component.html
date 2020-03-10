@@ -17,7 +17,7 @@
     <!--  FIXME: Form allows invalid phone number when submitting with enter key  -->
     <form class="row" [formGroup]="phoneEditForm" (keyup.enter)="savePhone(); activeModal.close('Close enter');">
       <div class="col-md-6">
-        <label>Format example:<br/>+13065551234</label>
+        <label *ngIf="!verified">Format example:<br/>+13065551234</label>
         <div class="form-group">
           <label for="phoneNumber">Phone number</label>
           <div *ngIf="verified">
@@ -30,11 +30,9 @@
         </div>
         <div class="form-group">
           <label>Verification status</label>
-          <div *ngIf="verified">
-            <fa-icon class="fa-check-circle" [icon]="faCheckCircle" size="2x"></fa-icon>
-          </div>
-          <div *ngIf="!verified">
-            <fa-icon class="fa-times-circle" [icon]="faTimesCircle" size="2x"></fa-icon>
+          <div>
+            <fa-icon *ngIf="verified" class="fa-check-circle" [icon]="faCheckCircle" size="2x"></fa-icon>
+            <fa-icon *ngIf="!verified" class="fa-times-circle" [icon]="faTimesCircle" size="2x"></fa-icon>
           </div>
         </div>
         <!--        <div *ngIf="!verified" class="form-group">-->
@@ -52,9 +50,7 @@
 </ng-container>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
-  <div *ngIf="!verified">
-    <button type="button" class="btn btn-info"
-            (click)="savePhone(); activeModal.close('Save click');"
-            [disabled]="!phoneEditForm.valid">Save</button>
-  </div>
+  <button *ngIf="!verified" type="button" class="btn btn-info"
+          (click)="savePhone(); activeModal.close('Save click');"
+          [disabled]="!phoneEditForm.valid">Save</button>
 </div>
