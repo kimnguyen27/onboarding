@@ -18,6 +18,7 @@ import { PhoneDeleteComponent } from "./phone/phone-delete/phone-delete.componen
 import { PhoneListComponent } from './phone/phone-list/phone-list.component';
 import { PhoneDetailComponent } from './phone/phone-detail/phone-detail.component';
 import { PhoneVerifyComponent } from './phone/phone-verify/phone-verify.component';
+import { PhoneVerifyContentComponent } from './phone/phone-verify/phone-verify-content/phone-verify-content.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PhoneVerifyComponent } from './phone/phone-verify/phone-verify.componen
     PhoneDeleteComponent,
     PhoneListComponent,
     PhoneDetailComponent,
-    PhoneVerifyComponent
+    PhoneVerifyComponent,
+    PhoneVerifyContentComponent
   ],
   imports: [
     BrowserModule,

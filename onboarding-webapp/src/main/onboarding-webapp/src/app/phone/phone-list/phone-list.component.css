@@ -2,8 +2,8 @@
   background-color: #dee2e6;
 }
 
-.deletePhoneCell {
-  text-align: center;
+.phoneOptionsCell {
+  text-align: right;
 }
 
 .fa-times-circle {

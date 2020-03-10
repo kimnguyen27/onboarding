@@ -1,0 +1,24 @@
+<ng-container *ngIf="!verified">
+  <div class="modal-body">
+    <form class="row" [formGroup]="phoneVerifyForm" (keyup.enter)="verifyAttempt()">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="verificationCode">Enter your 6 digit code here:</label>
+          <input type="text" class="form-control" id="verificationCode" formControlName="verificationCode"
+                 maxlength="6">
+          <!--<app-control-messages [control]="phoneVerifyForm.get('verificationCode')"></app-control-messages>-->
+          <button type="button" class="btn btn-info mt-3" (click)="verifyAttempt()"
+                  [disabled]="!phoneVerifyForm.valid">Submit</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <pre>
+          {{this.phoneVerifyForm.value | json}}
+        </pre>
+      </div>
+    </form>
+  </div>
+</ng-container>
+<ng-container *ngIf="verified">
+  <fa-icon class="fa-check-circle" [icon]="faCheckCircle" size="4x"></fa-icon>
+</ng-container>

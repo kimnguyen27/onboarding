@@ -7,6 +7,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PhoneCreateComponent} from "../phone-create/phone-create.component";
 import {PhoneDeleteComponent} from "../phone-delete/phone-delete.component";
 import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
+import {PhoneVerifyComponent} from "../phone-verify/phone-verify.component";
 
 @Component({
   selector: 'app-phone-list',
@@ -45,9 +46,6 @@ export class PhoneListComponent implements OnInit {
 
     modalRef.componentInstance.activatedRoute = this.activatedRoute;
     modalRef.componentInstance.phone = phone;
-    // modalRef.result.then((result) => {
-    //   console.log(result);
-    // });
   }
 
   openDeleteModal(phone: PhoneModel) {
@@ -58,8 +56,13 @@ export class PhoneListComponent implements OnInit {
 
     modalRef.componentInstance.fromParentList = phone;
     modalRef.componentInstance.userId = this.userId;
-    modalRef.result.then((result) => {
-      console.log(result);
-    });
+  }
+
+  openVerifyModal(phone: PhoneModel) {
+    const modalRef = this.modalService.open(PhoneVerifyComponent);
+
+    //modalRef.componentInstance.activatedRoute = this.activatedRoute;
+    modalRef.componentInstance.fromParentList = phone;
+    modalRef.componentInstance.userId = this.userId;
   }
 }

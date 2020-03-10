@@ -40,6 +40,7 @@ public class PhoneService {
     private ApplicationProperties applicationProperties;
 
     static final String WRONG_VERIFICATION_CODE = "WRONG_VERIFICATION_CODE";
+    static final String WRONG_CODE_FORMAT = "WRONG_CODE_FORMAT";
 
     @PostConstruct
     public void init() {
@@ -153,6 +154,11 @@ public class PhoneService {
             return update(userId, phoneDto
                     .setVerified(true)
                     .setVerificationCode(null));
+        }
+        else if (phoneDto.getVerificationCode() != null && phoneDto.getVerificationCode().length() < 6) {
+            Map<String, String> verificationErrors = new LinkedHashMap<>();
+            verificationErrors.put(phoneDto.getPhoneNumber(), WRONG_CODE_FORMAT);
+            throw new ValidationException(verificationErrors);
         }
         else {
             Map<String, String> verificationErrors = new LinkedHashMap<>();

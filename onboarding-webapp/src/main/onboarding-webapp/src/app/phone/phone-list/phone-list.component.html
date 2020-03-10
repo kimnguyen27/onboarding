@@ -15,7 +15,8 @@
     <td (click)="openPhoneModal(phone)" *ngIf="phone.verified">
       <fa-icon class="fa-check-circle" [icon]="faCheckCircle" size="lg"></fa-icon>
     </td>
-    <td class="deletePhoneCell">
+    <td class="phoneOptionsCell">
+      <button *ngIf="!phone.verified" type="button" class="btn btn-outline-info mr-2" (click)="openVerifyModal(phone)">Verify via SMS</button>
       <button type="button" class="btn btn-outline-danger" (click)="openDeleteModal(phone)">&times;</button>
     </td>
   </tr>

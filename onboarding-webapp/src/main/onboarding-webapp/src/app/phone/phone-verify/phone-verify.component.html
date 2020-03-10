@@ -1,1 +1,15 @@
-<p>phone-verify works!</p>
+<div class="modal-header">
+  <h5 class="modal-title" id="verifyPhoneModalLongTitle">Verify phone</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="close"
+          (click)="activeModal.close('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf="!verified" class="col-md-8">
+  <br/>
+  <h6>{{prompt}}</h6>
+</div>
+<app-phone-verify-content></app-phone-verify-content>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+</div>
