@@ -33,7 +33,7 @@ export class PhoneVerifyComponent implements OnInit, OnDestroy {
     //this.verifyInit();
     this.phone = this.fromParentList;
     console.log(this.fromParentList);
-    this.prompt = `A verification code has been sent to the phone number "${this.phone.phoneNumber}"`;
+    this.prompt = `A verification code has been sent to the phone number ${this.phone.phoneNumber}`;
 
     this.loadingSubscription = this.phoneService.get(this.userId, this.phone.phoneId)
       .pipe(
