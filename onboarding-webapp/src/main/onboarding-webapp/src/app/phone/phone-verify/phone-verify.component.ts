@@ -1,32 +1,73 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { PhoneModel } from "../../model/phone.model";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { PhoneService } from "../../service/phone.service";
+import { PhoneVerifyResultComponent } from "./phone-verify-result/phone-verify-result.component";
 
 @Component({
   selector: 'app-phone-verify',
   templateUrl: './phone-verify.component.html',
   styleUrls: ['./phone-verify.component.css']
 })
-export class PhoneVerifyComponent implements OnInit, OnDestroy {
+export class PhoneVerifyComponent implements OnInit {
 
-  //@Input() activatedRoute;
-  @Input() phoneFromList;
-  @Input() userIdFromList;
-  @Input() verifiedFromList;
+  @Input() phone;
+  @Input() userId;
+  @Input() verified;
 
-  public phone: PhoneModel;
-  public userId: string;
-  public verified: boolean;
+  protected phoneVerifyForm: FormGroup = this.createFormGroup();
+  private code: string;
 
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(public activeModal: NgbActiveModal,
+              private activatedRoute: ActivatedRoute,
+              private phoneService: PhoneService,
+              private formBuilder: FormBuilder,
+              public modalService: NgbModal) {
   }
 
   ngOnInit(): void {
-    this.phone = this.phoneFromList;
-    this.userId = this.userIdFromList;
-    this.verified = this.verifiedFromList;
+    this.verifyInit();
+
+    console.log(this.phoneVerifyForm);
   }
 
-  ngOnDestroy() {
+  verifyInit(): void {
+    this.phoneService.sendVerificationCode(this.userId, this.phone.phoneId).subscribe();
+  }
+
+  verifyAttempt(): void {
+    this.code = this.phoneVerifyForm.controls['verificationCode'].value;
+
+    console.log("Submitting code: " + this.code);
+    console.log("Verification status before submit: " + this.verified);
+
+    this.phoneService.submitVerificationCode(this.userId, this.phone.phoneId, this.code)
+      .subscribe(result => {
+        this.verifyResult(result);
+      });
+  }
+
+  verifyResult(phoneResult: PhoneModel) {
+    console.log("Verification status after submit: " + phoneResult.verified);
+
+    const modalRef = this.modalService.open(PhoneVerifyResultComponent);
+    modalRef.componentInstance.phone = phoneResult;
+
+    this.activeModal.close();
+  }
+
+  protected createFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      'verificationCode': [
+        '', [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          Validators.pattern(new RegExp('^[0-9]*$'))
+        ]
+      ]
+    });
   }
 }

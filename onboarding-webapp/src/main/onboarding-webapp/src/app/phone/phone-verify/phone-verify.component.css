@@ -1,3 +1,7 @@
 .close:focus {
   outline: none;
 }
+
+.prompt {
+  text-align: center;
+}

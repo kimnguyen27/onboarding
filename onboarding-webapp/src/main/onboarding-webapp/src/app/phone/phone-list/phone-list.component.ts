@@ -61,9 +61,8 @@ export class PhoneListComponent implements OnInit {
   openVerifyModal(phone: PhoneModel) {
     const modalRef = this.modalService.open(PhoneVerifyComponent);
 
-    //modalRef.componentInstance.activatedRoute = this.activatedRoute;
-    modalRef.componentInstance.phoneFromList = phone;
-    modalRef.componentInstance.userIdFromList = this.userId;
-    modalRef.componentInstance.verifiedFromList = phone.verified;
+    modalRef.componentInstance.phone = phone;
+    modalRef.componentInstance.userId = this.userId;
+    modalRef.componentInstance.verified = phone.verified;
   }
 }

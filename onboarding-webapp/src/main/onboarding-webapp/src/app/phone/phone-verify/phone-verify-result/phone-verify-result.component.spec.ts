@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhoneVerifyContentComponent } from './phone-verify-content.component';
+import { PhoneVerifyResultComponent } from './phone-verify-result.component';
 
-describe('PhoneVerifyContentComponent', () => {
-  let component: PhoneVerifyContentComponent;
-  let fixture: ComponentFixture<PhoneVerifyContentComponent>;
+describe('PhoneVerifyResultComponent', () => {
+  let component: PhoneVerifyResultComponent;
+  let fixture: ComponentFixture<PhoneVerifyResultComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PhoneVerifyContentComponent ]
+      declarations: [ PhoneVerifyResultComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhoneVerifyContentComponent);
+    fixture = TestBed.createComponent(PhoneVerifyResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
