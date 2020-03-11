@@ -17,7 +17,7 @@
           <label for="verificationCode">Enter your 6 digit code here:</label>
           <input type="text" class="form-control" id="verificationCode" formControlName="verificationCode"
                  maxlength="6">
-          <!--<app-control-messages [control]="phoneVerifyForm.get('verificationCode')"></app-control-messages>-->
+          <app-control-messages [control]="phoneVerifyForm.get('verificationCode')"></app-control-messages>
           <button type="button" class="btn btn-info mt-3" (click)="verifyAttempt()"
                   [disabled]="!phoneVerifyForm.valid">Submit</button>
         </div>

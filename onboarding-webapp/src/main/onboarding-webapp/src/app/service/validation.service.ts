@@ -8,9 +8,7 @@ export class ValidationService {
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
     let config = {
       'required': "Required field",
-      'pattern': "Incorrect number format",
-      'minLength': "Please enter a 6 digit code",
-      'maxLength': "Please enter a 6 digit code"
+      'pattern': "Incorrect number format"
     };
 
     return config[validatorName];

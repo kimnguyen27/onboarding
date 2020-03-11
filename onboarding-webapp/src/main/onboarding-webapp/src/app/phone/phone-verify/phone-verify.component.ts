@@ -63,8 +63,6 @@ export class PhoneVerifyComponent implements OnInit {
       'verificationCode': [
         '', [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(6),
           Validators.pattern(new RegExp('^[0-9]*$'))
         ]
       ]
