@@ -36,6 +36,13 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  saveIfValid() {
+    if (this.userCreateForm.valid) {
+      this.saveUser();
+      this.activeModal.close('Close enter');
+    }
+  }
+
   saveUser(): void {
     const valueToSave = {...this.userCreateForm.value};
 
@@ -52,5 +59,4 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       'lastName': ['', Validators.required]
     });
   }
-
 }

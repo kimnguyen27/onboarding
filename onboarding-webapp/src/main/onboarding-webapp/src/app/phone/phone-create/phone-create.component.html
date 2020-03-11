@@ -6,8 +6,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <!--  FIXME: Form allows invalid phone number when submitting with enter key  -->
-  <form class="row" [formGroup]="phoneCreateForm" (keyup.enter)="savePhone(); activeModal.close('Close enter');">
+  <form class="row" [formGroup]="phoneCreateForm" (keyup.enter)="saveIfValid()">
     <div class="col-md-6">
       <label>Format example:<br/>+13065551234</label>
       <div class="form-group">

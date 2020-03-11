@@ -6,7 +6,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="row" [formGroup]="userCreateForm" (keyup.enter)="saveUser(); activeModal.close('Close enter');">
+  <form class="row" [formGroup]="userCreateForm" (keyup.enter)="saveIfValid()">
     <div class="col-md-6">
       <div class="form-group">
         <label for="username">Username</label>

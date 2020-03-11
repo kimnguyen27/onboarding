@@ -51,6 +51,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  saveIfValid() {
+    if (this.userEditForm.valid) {
+      this.saveUser();
+      this.activeModal.close('Close enter');
+    }
+  }
+
   saveUser(): void {
      const valueToSave = {...this.userEditForm.value, userId: this.userId};
 

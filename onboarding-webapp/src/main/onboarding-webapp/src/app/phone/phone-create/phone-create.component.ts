@@ -37,6 +37,13 @@ export class PhoneCreateComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  saveIfValid() {
+    if (this.phoneCreateForm.valid) {
+      this.savePhone();
+      this.activeModal.close('Close enter');
+    }
+  }
+
   savePhone(): void {
     const valueToSave = {...this.phoneCreateForm.value, userId: this.userId};
 

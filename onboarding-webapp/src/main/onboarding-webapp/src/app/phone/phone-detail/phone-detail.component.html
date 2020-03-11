@@ -14,8 +14,7 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
-    <!--  FIXME: Form allows invalid phone number when submitting with enter key  -->
-    <form class="row" [formGroup]="phoneEditForm" (keyup.enter)="savePhone(); activeModal.close('Close enter');">
+    <form class="row" [formGroup]="phoneEditForm" (keyup.enter)="saveIfValid()">
       <div class="col-md-6">
         <label *ngIf="!verified">Format example:<br/>+13065551234</label>
         <div class="form-group">
@@ -35,10 +34,6 @@
             <fa-icon *ngIf="!verified" class="fa-times-circle" [icon]="faTimesCircle" size="2x"></fa-icon>
           </div>
         </div>
-        <!--        <div *ngIf="!verified" class="form-group">-->
-        <!--          <label>Verification Code:</label>-->
-        <!--          <input type="text" readonly class="form-control" id="verified" formControlName="verified">-->
-        <!--        </div>-->
       </div>
       <div class="col-md-6">
         <pre>
