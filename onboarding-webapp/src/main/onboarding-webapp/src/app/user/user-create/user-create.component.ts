@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {UserService} from "../../service/user.service";
 import {debounceTime} from "rxjs/internal/operators";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {UsernameValidator} from "./username.validator";
 
 @Component({
   selector: 'app-user-create',
@@ -12,12 +13,14 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class UserCreateComponent implements OnInit, OnDestroy {
 
+  @Input() users;
   userCreateForm: FormGroup = this.createFormGroup();
   subscriptions: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
               public activeModal: NgbActiveModal,
-              private userService: UserService) {
+              private userService: UserService,
+              public usernameValidator: UsernameValidator) {
   }
 
   ngOnInit() {
@@ -29,11 +32,31 @@ export class UserCreateComponent implements OnInit, OnDestroy {
         console.log("New firstName value is " + v);
       }));
 
+    this.usernameValidator.usernames = this.getAllUsernames();
+
     console.log(this.userCreateForm);
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  getAllUsernames() {
+    const allUsernames = [];
+
+    for (const index in this.users) {
+      if (this.users.hasOwnProperty(index)) {
+        //console.log(index + " -> " + this.users[index]);
+        const userHere = this.users[index];
+        for (const property in userHere) {
+          //console.log(property + " -> " + userHere[property]);
+          if (userHere.hasOwnProperty(property) && property === 'username') {
+            allUsernames.push(userHere[property]);
+          }
+        }
+      }
+    }
+    return allUsernames;
   }
 
   saveIfValid() {
@@ -54,7 +77,13 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
-      'username': ['', Validators.required],  // TODO: Add validation check for taken username
+      // FIXME: validation check for taken username
+      'username': [
+        '', [
+          Validators.required,
+          //this.usernameValidator.checkUsername.bind(this.usernameValidator)
+        ]
+      ],
       'firstName': ['', Validators.required],
       'lastName': ['', Validators.required]
     });

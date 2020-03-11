@@ -27,7 +27,9 @@ export class UserListComponent implements OnInit {
   }
 
   openCreateModal() {
-    this.modalService.open(UserCreateComponent);
+    const modalRef = this.modalService.open(UserCreateComponent);
+
+    modalRef.componentInstance.users = this.users;
   }
 
   openDeleteModal(user: UserModel) {
@@ -36,8 +38,5 @@ export class UserListComponent implements OnInit {
     modalRef.componentInstance.delete_user_modal_content = `Are you sure you want to delete user "${user.username}"?`;
     modalRef.componentInstance.fromParentList = user;
     modalRef.componentInstance.activatedRoute = this.activatedRoute;
-    modalRef.result.then((result) => {
-      console.log(result);
-    });
   }
 }

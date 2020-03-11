@@ -19,6 +19,7 @@ import { PhoneListComponent } from './phone/phone-list/phone-list.component';
 import { PhoneDetailComponent } from './phone/phone-detail/phone-detail.component';
 import { PhoneVerifyComponent } from './phone/phone-verify/phone-verify.component';
 import { PhoneVerifyResultComponent } from './phone/phone-verify/phone-verify-result/phone-verify-result.component';
+import { UsernameValidator } from "./user/user-create/username.validator";
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { PhoneVerifyResultComponent } from './phone/phone-verify/phone-verify-re
     NgbModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [UsernameValidator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
