@@ -6,7 +6,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <ng-container *ngIf="!verified">
+  <ng-container *ngIf="verified">
     <div class="successContent col-md-12">
       <fa-icon class="fa-check-circle" [icon]="faCheckCircle" size="6x"></fa-icon>
       <br/>
@@ -19,7 +19,8 @@
       <fa-icon class="fa-times-circle" [icon]="faTimesCircle" size="6x"></fa-icon>
       <br/>
       <br/>
-      <h5>Failed to verify phone number {{phone.phoneNumber}}.</h5>
+      <h5>Failed to verify phone number {{phone.phoneNumber}}</h5>
+      <h3>☹</h3>
     </div>
   </ng-container>
 </div>

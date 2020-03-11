@@ -161,9 +161,12 @@ public class PhoneService {
             throw new ValidationException(verificationErrors);
         }
         else {
-            Map<String, String> verificationErrors = new LinkedHashMap<>();
-            verificationErrors.put(phoneDto.getPhoneNumber(), WRONG_VERIFICATION_CODE);
-            throw new ValidationException(verificationErrors);
+//            Map<String, String> verificationErrors = new LinkedHashMap<>();
+//            verificationErrors.put(phoneDto.getPhoneNumber(), WRONG_VERIFICATION_CODE);
+//            throw new ValidationException(verificationErrors);
+            return update(userId, phoneDto
+                    .setVerified(false)
+                    .setVerificationCode(null));
         }
     }
 }
