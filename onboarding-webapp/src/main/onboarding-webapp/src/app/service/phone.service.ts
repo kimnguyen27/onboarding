@@ -40,4 +40,8 @@ export class PhoneService {
   public submitVerificationCode(userId: string, phoneId: string, verifCode: string): Observable<PhoneModel> {
     return this.httpClient.post<PhoneModel>(`${BASE_URI}/${userId}/phones/${phoneId}/submitVerificationCode/${verifCode}`, {});
   }
+
+  public clearVerification(userId: string, phoneId: string): Observable<PhoneModel> {
+    return this.httpClient.post<PhoneModel>(`${BASE_URI}/${userId}/phones/${phoneId}/clearVerification`, {});
+  }
 }

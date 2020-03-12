@@ -169,4 +169,12 @@ public class PhoneService {
                     .setVerificationCode(null));
         }
     }
+
+    public void verifyClear(UUID userId, UUID phoneId) {
+        PhoneDto phoneDto = get(userId, phoneId);
+
+        phoneDto.setVerified(false);
+        phoneDto.setVerificationCode(null);
+        update(userId, phoneDto);
+    }
 }

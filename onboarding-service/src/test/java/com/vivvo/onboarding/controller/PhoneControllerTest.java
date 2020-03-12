@@ -98,11 +98,11 @@ public class PhoneControllerTest {
         PhoneDto createdPhoneDto = userClient
                 .createPhone(createdUserDto.getUserId(), newValidPhoneDto(createdUserDto));
 
-        userClient.beginVerification(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
+        userClient.verifyInit(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
         PhoneDto primedPhoneDto = userClient
                 .getPhone(createdUserDto.getUserId(), createdPhoneDto.getPhoneId());
         PhoneDto verifiedPhoneDto = userClient
-                .verifyPhone(primedPhoneDto.getUserId(), primedPhoneDto.getPhoneId(),
+                .verifyAttempt(primedPhoneDto.getUserId(), primedPhoneDto.getPhoneId(),
                 primedPhoneDto.getVerificationCode());
 
         assertTrue(verifiedPhoneDto.getVerified());

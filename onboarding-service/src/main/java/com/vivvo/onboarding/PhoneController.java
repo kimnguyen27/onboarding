@@ -45,7 +45,7 @@ public class PhoneController {
 
     @PostMapping("/{phoneId}/sendVerificationCode")
     public void sendVerificationCode(@PathVariable("userId") UUID userId,
-                                         @PathVariable("phoneId") UUID phoneId) {
+                                     @PathVariable("phoneId") UUID phoneId) {
         phoneService.verifyInit(userId, phoneId);
     }
 
@@ -56,4 +56,9 @@ public class PhoneController {
         return phoneService.verifyAttempt(userId, phoneId, verificationCode);
     }
 
+    @PostMapping("/{phoneId}/clearVerification")
+    public void clearVerification(@PathVariable("userId") UUID userId,
+                                  @PathVariable("phoneId") UUID phoneId) {
+        phoneService.verifyClear(userId, phoneId);
+    }
 }

@@ -24,8 +24,6 @@ public class OnboardingApplication {
     //
     // add phone number verification using twilio
 
-    //TODO: Fix db logic to revoke verification status on phone update
-
     @Bean
     public MessageSourceAccessor messageSourceAccessor(MessageSource messageSource) {
         return new MessageSourceAccessor(messageSource);

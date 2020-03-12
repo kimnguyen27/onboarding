@@ -97,19 +97,26 @@ public class UserClient {
                 .get(PhoneDto.class);
     }
 
-    public PhoneDto beginVerification(UUID userId, UUID phoneId) {
+    public PhoneDto verifyInit(UUID userId, UUID phoneId) {
         return phoneTarget(userId, phoneId)
                 .path("sendVerificationCode")
                 .request()
                 .post(Entity.json(phoneId), PhoneDto.class);
     }
 
-    public PhoneDto verifyPhone(UUID userId, UUID phoneId, String verificationCode) {
+    public PhoneDto verifyAttempt(UUID userId, UUID phoneId, String verificationCode) {
         return phoneTarget(userId, phoneId)
                 .path("submitVerificationCode")
                 .path(verificationCode)
                 .request()
                 .post(Entity.json(verificationCode), PhoneDto.class);
+    }
+
+    public PhoneDto verifyClear(UUID userId, UUID phoneId) {
+        return phoneTarget(userId, phoneId)
+                .path("clearVerification")
+                .request()
+                .post(Entity.json(phoneId), PhoneDto.class);
     }
 
     private WebTarget phoneTarget(UUID userId) {

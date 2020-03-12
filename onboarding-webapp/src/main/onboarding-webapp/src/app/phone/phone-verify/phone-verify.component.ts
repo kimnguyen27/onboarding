@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { PhoneModel } from "../../model/phone.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -11,7 +11,7 @@ import { PhoneVerifyResultComponent } from "./phone-verify-result/phone-verify-r
   templateUrl: './phone-verify.component.html',
   styleUrls: ['./phone-verify.component.css']
 })
-export class PhoneVerifyComponent implements OnInit {
+export class PhoneVerifyComponent implements OnInit, OnDestroy {
 
   @Input() phone;
   @Input() userId;
@@ -19,6 +19,7 @@ export class PhoneVerifyComponent implements OnInit {
 
   protected phoneVerifyForm: FormGroup = this.createFormGroup();
   private code: string;
+  private scrubPhone: PhoneModel;
 
   constructor(public activeModal: NgbActiveModal,
               private activatedRoute: ActivatedRoute,
@@ -29,6 +30,15 @@ export class PhoneVerifyComponent implements OnInit {
 
   ngOnInit(): void {
     this.verifyInit();
+  }
+
+  ngOnDestroy(): void {
+    this.phoneService.get(this.userId, this.phone.phoneId).subscribe( phone => {
+      this.scrubPhone = phone;
+      if (!this.scrubPhone.verified) {
+        this.phoneService.clearVerification(this.userId, this.phone.phoneId).subscribe();
+      }
+    });
   }
 
   verifyInit(): void {

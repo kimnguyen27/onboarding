@@ -46,13 +46,19 @@ public class WebappPhoneController {
     @PostMapping("/{phoneId}/sendVerificationCode")
     public void sendVerificationCode(@PathVariable("userId") UUID userId,
                                      @PathVariable("phoneId") UUID phoneId) {
-        userClient.beginVerification(userId, phoneId);
+        userClient.verifyInit(userId, phoneId);
     }
 
     @PostMapping("/{phoneId}/submitVerificationCode/{verificationCode}")
     public PhoneDto submitVerificationCode(@PathVariable("userId") UUID userId,
                                            @PathVariable("phoneId") UUID phoneId,
                                            @PathVariable("verificationCode") String verificationCode) {
-        return userClient.verifyPhone(userId, phoneId, verificationCode);
+        return userClient.verifyAttempt(userId, phoneId, verificationCode);
+    }
+
+    @PostMapping("/{phoneId}/clearVerification")
+    public void clearVerification(@PathVariable("userId") UUID userId,
+                                  @PathVariable("phoneId") UUID phoneId) {
+        userClient.verifyClear(userId, phoneId);
     }
 }

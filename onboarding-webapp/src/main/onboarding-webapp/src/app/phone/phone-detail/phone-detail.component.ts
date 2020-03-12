@@ -73,6 +73,7 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
     this.phoneService.update(this.userId, valueToSave).subscribe(phone => {
       this.phoneEditForm.patchValue(phone);
     });
+    this.phoneService.clearVerification(this.userId, this.phoneId); // Back end redundancy to revoke verification upon update
     document.location.reload();
   }
 
@@ -84,7 +85,7 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
           Validators.pattern(new RegExp('^\\+[1-9]\\d{1,14}$')) // Validating for e.164 phone format
         ]
       ],
-      'verified': ''
+      'verified': 'false'
     });
   }
 }
