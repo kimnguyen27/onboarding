@@ -82,6 +82,7 @@ public class PhoneService {
     }
 
     public PhoneDto update(UUID userId, PhoneDto dto) {
+        //FIXME: It is possible to bypass code verification by sending "verified" : "true" in JSON body
         dto.setUserId(userId);
         phoneValidator.validateForUpdateAndThrow(dto);
         return phoneRepository.findById(dto.getPhoneId())
