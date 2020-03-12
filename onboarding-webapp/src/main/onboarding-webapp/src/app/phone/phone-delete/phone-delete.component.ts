@@ -18,7 +18,6 @@ export class PhoneDeleteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(this.fromParentList);
   }
 
   ngOnDestroy() {

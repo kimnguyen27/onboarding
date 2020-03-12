@@ -25,7 +25,6 @@ export class UserDeleteComponent implements OnInit, OnDestroy {
       this.userId = params['userId'];
     });
     console.log("UserId in path: "+ this.userId);
-    console.log(this.fromParentList);
   }
 
   ngOnDestroy() {

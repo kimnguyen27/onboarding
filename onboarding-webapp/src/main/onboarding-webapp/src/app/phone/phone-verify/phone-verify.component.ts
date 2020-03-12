@@ -29,8 +29,6 @@ export class PhoneVerifyComponent implements OnInit {
 
   ngOnInit(): void {
     this.verifyInit();
-
-    console.log(this.phoneVerifyForm);
   }
 
   verifyInit(): void {
