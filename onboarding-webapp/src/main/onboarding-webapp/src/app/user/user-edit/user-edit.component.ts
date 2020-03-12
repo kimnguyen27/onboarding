@@ -1,9 +1,9 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../service/user.service";
-import {Subscription} from "rxjs";
-import {debounceTime, delay} from "rxjs/internal/operators";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../../service/user.service";
+import { Subscription } from "rxjs";
+import { debounceTime, delay } from "rxjs/internal/operators";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-edit',
@@ -71,7 +71,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       'username': '',
       'firstName': ['', Validators.required],
-      'lastName': ['', Validators.required]
+      'lastName': ['', Validators.required],
+      'phones': ''
     });
   }
 }

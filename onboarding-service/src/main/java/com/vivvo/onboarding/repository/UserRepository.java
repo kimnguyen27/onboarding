@@ -11,6 +11,7 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID> {
 
 	List<User> findByLastName(String lastName);
+	// TODO: Implement findByUserId for validator
 
 	boolean existsByUsernameIgnoreCase(String username);
 }

@@ -27,7 +27,7 @@ public class UserClient {
                 .request()
                 .post(Entity.json(dto), UserDto.class);
     }
-// FIXME: Updating user erases phones
+
     public UserDto update(UserDto dto) {
         return userTarget(dto.getUserId())
                 .request()
