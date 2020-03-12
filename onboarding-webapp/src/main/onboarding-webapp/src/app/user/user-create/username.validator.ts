@@ -1,63 +1,28 @@
 import { Injectable } from "@angular/core";
-import {AbstractControl, FormControl, ValidationErrors} from "@angular/forms";
+import { AbstractControl, ValidationErrors } from "@angular/forms";
+import { UserService } from "../../service/user.service";
+import { debounceTime } from "rxjs/operators";
 
 @Injectable()
 export class UsernameValidator {
 
-  debouncer: any;
-  usernames: string[];
+  static checkUsername(userService: UserService): ValidationErrors | null {
 
-  constructor() {
-  }
-
-  checkUsername(control: AbstractControl): ValidationErrors | null {
-
-    clearTimeout(this.debouncer);
-
-    // this.debouncer = setTimeout(() => {
-    //
-    //   for (let username of this.usernames) {
-    //     console.log(`Username: checking ${control.value} against ${username}`);
-    //
-    //     if (control.value !== username) {
-    //
-    //       console.log(`Username match: no matches found`);
-    //       return null;
-    //
-    //     } else if (control.value === username) {
-    //
-    //       console.log(`Username match: ${username}`);
-    //       return {'usernameValidator': true};
-    //     }
-    //
-    //   }
-    //
-    // }, 1000);
-
-    return new Promise(resolve => {
-
-      this.debouncer = setTimeout(() => {
-
-        for (let username of this.usernames) {
-          console.log(`Username: checking ${control.value} against ${username}`);
-
-          if (control.value !== username) {
-
-            //console.log(`Username match: no matches found`);
-            resolve(null);
-
-          } else if (control.value === username) {
-
-            console.log(`Username match: ${username}`);
-            resolve({'usernameValidator': true});
-            break;
+    return(control: AbstractControl) => {
+      return userService.usernameExists(control.value)
+        .pipe(
+          debounceTime(1000)
+        )
+        .subscribe( result => {
+          if (result) {
+            console.log(`Username "${control.value}" exists`);
+            return {'usernameValidator': true};
+          } else {
+            console.log(`Username "${control.value}" does not exist`);
+            return null;
           }
-
-        }
-
-      }, 1000);
-
-    });
+        });
+    };
 
   }
 

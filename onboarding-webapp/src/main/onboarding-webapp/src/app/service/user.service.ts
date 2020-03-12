@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {UserModel} from "../model/user.model";
 import {Observable} from "rxjs";
 
@@ -15,6 +15,13 @@ export class UserService {
 
   public findAllUsers(): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(BASE_URI);
+  }
+
+  public usernameExists(username: string) {
+    let params = new HttpParams();
+    params = params.set('username', username);
+
+    return this.httpClient.get(`${BASE_URI}`, {params: params});
   }
 
   public create(user: UserModel): Observable<UserModel> {
