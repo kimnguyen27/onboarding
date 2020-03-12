@@ -26,6 +26,11 @@ public class UserController {
 		return userService.findAll();
 	}
 
+	@GetMapping(params = "username")
+	public Boolean usernameExists(@RequestParam("username") String username) {
+		return userService.usernameExists(username);
+	}
+
 	@GetMapping("/{userId}")
 	public UserDto get(@PathVariable("userId") UUID userId) {
 		return userService.get(userId);

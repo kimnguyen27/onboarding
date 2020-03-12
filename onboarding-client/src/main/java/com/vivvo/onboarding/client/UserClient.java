@@ -53,6 +53,13 @@ public class UserClient {
                 });
     }
 
+    public Boolean usernameExists(String username) {
+        return userTarget()
+                .queryParam("username", username)
+                .request()
+                .get(Boolean.TYPE);
+    }
+
     private WebTarget userTarget() {
         return client.target(baseUri)
                 .path("api")

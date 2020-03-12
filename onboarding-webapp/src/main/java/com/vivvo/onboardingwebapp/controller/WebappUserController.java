@@ -21,6 +21,11 @@ public class WebappUserController {
         return userClient.findAll();
     }
 
+    @GetMapping(params = "username")
+    public Boolean usernameExists(@RequestParam("username") String username) {
+        return userClient.usernameExists(username);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto create(@RequestBody UserDto dto) {
