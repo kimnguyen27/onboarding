@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {UserService} from "../../service/user.service";
+import {UserService} from "../../_service/user.service";
 import {Router} from "@angular/router";
 
 @Component({

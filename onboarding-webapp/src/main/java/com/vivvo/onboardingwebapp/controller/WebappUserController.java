@@ -22,6 +22,11 @@ public class WebappUserController {
     }
 
     @GetMapping(params = "username")
+    public UserDto findByUsername(@RequestParam("username") String username) {
+        return userClient.findByUsername(username);
+    }
+
+    @GetMapping(params = "username")
     public Boolean usernameExists(@RequestParam("username") String username) {
         return userClient.usernameExists(username);
     }

@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {PhoneService} from "../../service/phone.service";
+import {PhoneService} from "../../_service/phone.service";
 import {debounceTime} from "rxjs/internal/operators";
 
 @Component({

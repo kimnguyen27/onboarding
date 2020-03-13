@@ -42,6 +42,12 @@ public class UserService {
 				.collect(Collectors.toList());
 	}
 
+	public UserDto findByUsername(String username) {
+		return userRepository.findByUsername(username)
+				.map(userAssembler::assemble)
+				.orElseThrow(() -> new UserNotFoundException(username));
+	}
+
 	public Boolean usernameExists(String username) {
 		return userRepository.existsByUsernameIgnoreCase(username);
 	}

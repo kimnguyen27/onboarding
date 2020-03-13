@@ -3,7 +3,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {debounceTime, delay} from "rxjs/internal/operators";
-import {PhoneService} from "../../service/phone.service";
+import {PhoneService} from "../../_service/phone.service";
 import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
 @Component({

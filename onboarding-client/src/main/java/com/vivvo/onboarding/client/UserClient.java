@@ -53,6 +53,13 @@ public class UserClient {
                 });
     }
 
+    public UserDto findByUsername(String username) {
+        return userTarget()
+                .queryParam("username", username)
+                .request()
+                .get(UserDto.class);
+    }
+
     public Boolean usernameExists(String username) {
         return userTarget()
                 .queryParam("username", username)

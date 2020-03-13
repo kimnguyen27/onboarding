@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {PhoneService} from "../../service/phone.service";
+import {PhoneService} from "../../_service/phone.service";
 
 @Component({
   selector: 'app-phone-delete',

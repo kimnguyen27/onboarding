@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { PhoneModel } from "../../model/phone.model";
+import { PhoneModel } from "../../_model/phone.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { PhoneService } from "../../service/phone.service";
+import { PhoneService } from "../../_service/phone.service";
 import { PhoneVerifyResultComponent } from "./phone-verify-result/phone-verify-result.component";
 
 @Component({

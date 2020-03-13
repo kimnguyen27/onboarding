@@ -6,22 +6,22 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="row" [formGroup]="userCreateForm" (keyup.enter)="saveIfValid()">
+  <form class="row" [formGroup]="userCreateForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
     <div class="col-md-6">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" formControlName="username"
+        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter username"
                oninput="this.value = this.value.toLowerCase()">
         <app-control-messages [control]="userCreateForm.get('username')"></app-control-messages>
       </div>
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+        <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Jane">
         <app-control-messages [control]="userCreateForm.get('firstName')"></app-control-messages>
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+        <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Doe">
         <app-control-messages [control]="userCreateForm.get('lastName')"></app-control-messages>
       </div>
     </div>
@@ -33,6 +33,6 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-info" (click)="saveUser(); activeModal.close('Close click');"
-          [disabled]="!userCreateForm.valid">Save</button>
+  <button type="reset" class="btn btn-secondary mr-2" (click)="revert()">Reset</button>
+  <button type="submit" class="btn btn-info" [disabled]="!userCreateForm.valid">Save</button>
 </div>

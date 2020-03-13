@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {UserModel} from "../model/user.model";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { UserModel } from "../_model/user.model";
+import { Observable } from "rxjs";
 
 const BASE_URI = './api/v1/users';
 
@@ -17,11 +17,9 @@ export class UserService {
     return this.httpClient.get<UserModel[]>(BASE_URI);
   }
 
-  public usernameExists(username: string) {
-    let params = new HttpParams();
-    params = params.set('username', username);
-
-    return this.httpClient.get(`${BASE_URI}`, {params: params});
+  public findByUsername(username: string): Observable<UserModel[]>{
+    //username= '^'+username.trim()+'$'; //Exact match testing?
+    return this.httpClient.get<UserModel[]>(`${BASE_URI}/?username=${username}`);
   }
 
   public create(user: UserModel): Observable<UserModel> {

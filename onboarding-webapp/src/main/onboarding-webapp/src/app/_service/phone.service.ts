@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {PhoneModel} from "../model/phone.model";
+import {PhoneModel} from "../_model/phone.model";
 
 const BASE_URI = './api/v1/users';
 

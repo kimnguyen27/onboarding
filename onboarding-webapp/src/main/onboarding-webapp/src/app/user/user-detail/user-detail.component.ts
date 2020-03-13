@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../../service/user.service";
-import {UserModel} from "../../model/user.model";
-import {PhoneModel} from "../../model/phone.model";
+import {UserService} from "../../_service/user.service";
+import {UserModel} from "../../_model/user.model";
+import {PhoneModel} from "../../_model/phone.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {UserDeleteComponent} from "../user-delete/user-delete.component";

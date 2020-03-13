@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { UserService } from "../../service/user.service";
+import { UserService } from "../../_service/user.service";
 import { Subscription } from "rxjs";
 import { debounceTime, delay } from "rxjs/internal/operators";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";

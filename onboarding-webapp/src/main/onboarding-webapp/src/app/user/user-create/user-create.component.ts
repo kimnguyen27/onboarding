@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { UserService } from "../../service/user.service";
+import { UserService } from "../../_service/user.service";
 import { debounceTime } from "rxjs/internal/operators";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { UsernameValidator } from "../../_validators/username-validator";
 
 @Component({
   selector: 'app-user-create',
@@ -18,7 +19,8 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
               public activeModal: NgbActiveModal,
-              private userService: UserService) {
+              private userService: UserService,
+              private usernameValidator: UsernameValidator) {
   }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
         console.log("New firstName value is " + v);
       }));
 
-
+    this.usernameValidator.userService = this.userService;
 
     console.log(this.userCreateForm);
   }
@@ -39,11 +41,19 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  saveIfValid() {
+  revert() {
+    this.userCreateForm.reset();
+  }
+
+  onSubmit() {
     if (this.userCreateForm.valid) {
       this.saveUser();
-      this.activeModal.close('Close enter');
+      this.activeModal.close('Close submit');
     }
+  }
+
+  saveIfValid() {
+
   }
 
   saveUser(): void {
@@ -58,9 +68,12 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
       // FIXME: validation check for taken username
-      'username': new FormControl('', Validators.required),
-      'firstName': new FormControl('', Validators.required),
-      'lastName': new FormControl('', Validators.required)
+      'username': new FormControl('',
+        [Validators.required],
+        [this.usernameValidator.checkUsername()]
+      ),
+      'firstName': new FormControl('', [Validators.required]),
+      'lastName': new FormControl('', [Validators.required])
     });
   }
 }

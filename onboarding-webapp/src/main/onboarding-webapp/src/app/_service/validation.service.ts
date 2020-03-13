@@ -9,7 +9,7 @@ export class ValidationService {
     let config = {
       'required': "Required field",
       'pattern': "Incorrect number format",
-      'usernameValidator': "Username is taken."
+      'usernameExists': "Username is taken."
     };
 
     return config[validatorName];

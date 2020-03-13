@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PhoneModel} from "../../model/phone.model";
-import {PhoneService} from "../../service/phone.service";
+import {PhoneModel} from "../../_model/phone.model";
+import {PhoneService} from "../../_service/phone.service";
 import {ActivatedRoute} from "@angular/router";
 import {PhoneDetailComponent} from "../phone-detail/phone-detail.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";

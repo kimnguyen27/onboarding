@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserModel} from "../../model/user.model";
-import {UserService} from "../../service/user.service";
+import {UserModel} from "../../_model/user.model";
+import {UserService} from "../../_service/user.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserCreateComponent} from "../user-create/user-create.component";
 import {UserDeleteComponent} from "../user-delete/user-delete.component";

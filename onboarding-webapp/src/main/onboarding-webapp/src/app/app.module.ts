@@ -9,7 +9,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ControlMessagesComponent } from './control-messages/control-messages.component';
+import { ControlMessagesComponent } from './_control-messages/control-messages.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserDeleteComponent } from "./user/user-delete/user-delete.component";
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
@@ -19,7 +19,7 @@ import { PhoneListComponent } from './phone/phone-list/phone-list.component';
 import { PhoneDetailComponent } from './phone/phone-detail/phone-detail.component';
 import { PhoneVerifyComponent } from './phone/phone-verify/phone-verify.component';
 import { PhoneVerifyResultComponent } from './phone/phone-verify/phone-verify-result/phone-verify-result.component';
-import { UsernameValidator } from "./user/user-create/username.validator";
+import { UsernameValidator } from "./_validators/username-validator";
 
 
 @NgModule({
