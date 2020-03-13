@@ -16,6 +16,7 @@ export class UsernameValidator {
       .pipe(
         switchMap(() => {
           // Check if username is available
+          // return this.userService.findByUsername(text)
           return this.userService.usernameExists(text)
         })
       );
@@ -26,14 +27,8 @@ export class UsernameValidator {
       return this.searchUsername(control.value)
         .pipe(
           map(res => {
-            // If username is taken
-            if (res.length) {
-              // return error
-              console.log("Username match found: " + res);
-              return {'usernameExists': true };
-            } else {
-              return null;
-            }
+            console.log("Username taken: " + res);
+            return (res) ? {'usernameExists': true} : null;
           })
         );
     };
