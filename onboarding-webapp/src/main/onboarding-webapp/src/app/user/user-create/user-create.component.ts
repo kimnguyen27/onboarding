@@ -67,7 +67,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
-      // FIXME: validation check for taken username
       'username': new FormControl('',
         [Validators.required],
         [this.usernameValidator.checkUsername()]
