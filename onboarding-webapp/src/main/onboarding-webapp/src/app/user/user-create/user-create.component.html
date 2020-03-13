@@ -6,8 +6,8 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="row" [formGroup]="userCreateForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
-    <div class="col-md-6">
+  <form class="row justify-content-center" [formGroup]="userCreateForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()">
+    <div class="col-md-8">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter username"
@@ -25,11 +25,11 @@
         <app-control-messages [control]="userCreateForm.get('lastName')"></app-control-messages>
       </div>
     </div>
-    <div class="col-md-6">
-    <pre>
-      {{this.userCreateForm.value | json}}
-    </pre>
-    </div>
+<!--    <div class="col-md-6">-->
+<!--    <pre>-->
+<!--      {{this.userCreateForm.value | json}}-->
+<!--    </pre>-->
+<!--    </div>-->
   </form>
 </div>
 <div class="modal-footer">

@@ -6,20 +6,20 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="row" [formGroup]="phoneCreateForm" (keyup.enter)="saveIfValid()">
+  <form class="row justify-content-center" [formGroup]="phoneCreateForm" (keyup.enter)="saveIfValid()">
     <div class="col-md-6">
-      <label>Format example:<br/>+13065551234</label>
       <div class="form-group">
         <label for="phoneNumber">Phone number</label>
-        <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+        <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
+               placeholder="+13065551234">
         <app-control-messages [control]="phoneCreateForm.get('phoneNumber')"></app-control-messages>
       </div>
     </div>
-    <div class="col-md-6">
-        <pre>
-          {{this.phoneCreateForm.value | json}}
-        </pre>
-    </div>
+<!--    <div class="col-md-6">-->
+<!--        <pre>-->
+<!--          {{this.phoneCreateForm.value | json}}-->
+<!--        </pre>-->
+<!--    </div>-->
   </form>
 </div>
 <div class="modal-footer">

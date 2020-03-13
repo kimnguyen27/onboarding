@@ -10,7 +10,7 @@
     <div class="alert alert-success col-md-12" role="alert">
       <h6 class="prompt">A verification code has been sent to the phone number {{phone.phoneNumber}}</h6>
     </div>
-    <form class="row" [formGroup]="phoneVerifyForm" (keyup.enter)="verifyAttempt()">
+    <form class="row justify-content-center" [formGroup]="phoneVerifyForm" (keyup.enter)="verifyAttempt()">
       <div class="col-md-6">
         <div class="form-group">
           <label for="verificationCode">Enter your 6 digit code here:</label>
@@ -21,11 +21,11 @@
                   [disabled]="!phoneVerifyForm.valid">Submit</button>
         </div>
       </div>
-      <div class="col-md-6">
-        <pre>
-          {{this.phoneVerifyForm.value | json}}
-        </pre>
-      </div>
+<!--      <div class="col-md-6">-->
+<!--        <pre>-->
+<!--          {{this.phoneVerifyForm.value | json}}-->
+<!--        </pre>-->
+<!--      </div>-->
     </form>
   </ng-container>
 </div>

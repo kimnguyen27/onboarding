@@ -14,8 +14,8 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
-    <form class="row" [formGroup]="userEditForm" (keyup.enter)="saveIfValid()">
-      <div class="col-md-6">
+    <form class="row justify-content-center" [formGroup]="userEditForm" (keyup.enter)="saveIfValid()">
+      <div class="col-md-8">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" readonly class="form-control" id="username" formControlName="username">
@@ -31,11 +31,11 @@
           <app-control-messages [control]="userEditForm.get('lastName')"></app-control-messages>
         </div>
       </div>
-      <div class="col-md-6">
-        <pre>
-          {{this.userEditForm.value | json}}
-        </pre>
-      </div>
+<!--      <div class="col-md-6">-->
+<!--        <pre>-->
+<!--          {{this.userEditForm.value | json}}-->
+<!--        </pre>-->
+<!--      </div>-->
     </form>
   </div>
 </ng-container>

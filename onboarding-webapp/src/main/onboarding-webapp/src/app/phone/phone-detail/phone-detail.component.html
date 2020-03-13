@@ -14,16 +14,16 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
-    <form class="row" [formGroup]="phoneEditForm" (keyup.enter)="saveIfValid()">
+    <form class="row justify-content-center" [formGroup]="phoneEditForm" (keyup.enter)="saveIfValid()">
       <div class="col-md-6">
-        <label *ngIf="!verified">Format example:<br/>+13065551234</label>
         <div class="form-group">
           <label for="phoneNumber">Phone number</label>
           <div *ngIf="verified">
             <h5>{{phoneNumber}}</h5>
           </div>
           <div *ngIf="!verified">
-            <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+            <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
+                   placeholder="+13065551234">
             <app-control-messages [control]="phoneEditForm.get('phoneNumber')"></app-control-messages>
           </div>
         </div>
@@ -35,11 +35,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <pre>
-          {{this.phoneEditForm.value | json}}
-        </pre>
-      </div>
+<!--      <div class="col-md-6">-->
+<!--        <pre>-->
+<!--          {{this.phoneEditForm.value | json}}-->
+<!--        </pre>-->
+<!--      </div>-->
     </form>
   </div>
 </ng-container>
