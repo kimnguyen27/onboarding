@@ -22,6 +22,10 @@ export class UserService {
     return this.httpClient.get<UserModel[]>(`${BASE_URI}/?username=${username}`);
   }
 
+  public usernameExists(username: string): Observable<any>{
+    return this.httpClient.get<Boolean>(`${BASE_URI}/?username=${username}`);
+  }
+
   public create(user: UserModel): Observable<UserModel> {
     return this.httpClient.post<UserModel>(`${BASE_URI}`, user);
   }
