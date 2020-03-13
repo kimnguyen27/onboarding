@@ -1,9 +1,9 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subscription} from "rxjs";
-import {UserService} from "../../service/user.service";
-import {debounceTime} from "rxjs/internal/operators";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { Subscription } from "rxjs";
+import { UserService } from "../../service/user.service";
+import { debounceTime } from "rxjs/internal/operators";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-create',
@@ -58,14 +58,9 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   private createFormGroup(): FormGroup {
     return this.formBuilder.group({
       // FIXME: validation check for taken username
-      'username': [
-        '',
-        [Validators.required,
-          //UsernameValidator.checkUsername(this.userService)
-        ]
-      ],
-      'firstName': ['', Validators.required],
-      'lastName': ['', Validators.required]
+      'username': new FormControl('', Validators.required),
+      'firstName': new FormControl('', Validators.required),
+      'lastName': new FormControl('', Validators.required)
     });
   }
 }
