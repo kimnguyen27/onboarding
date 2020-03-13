@@ -31,8 +31,8 @@ public class UserController {
 		return userService.findByUsername(username);
 	}
 
-	@GetMapping(params = "username")
-	public Boolean usernameExists(@RequestParam("username") String username) {
+	@GetMapping(params = "usernameExists")
+	public Boolean usernameExists(@RequestParam("usernameExists") String username) {
 		return userService.usernameExists(username);
 	}
 

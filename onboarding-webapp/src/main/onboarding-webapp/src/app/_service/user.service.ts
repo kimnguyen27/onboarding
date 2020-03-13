@@ -23,7 +23,7 @@ export class UserService {
   }
 
   public usernameExists(username: string): Observable<any>{
-    return this.httpClient.get<Boolean>(`${BASE_URI}/?username=${username}`);
+    return this.httpClient.get<Boolean>(`${BASE_URI}/?usernameExists=${username}`);
   }
 
   public create(user: UserModel): Observable<UserModel> {

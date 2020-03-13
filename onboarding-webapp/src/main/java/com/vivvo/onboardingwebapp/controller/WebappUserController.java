@@ -26,8 +26,8 @@ public class WebappUserController {
         return userClient.findByUsername(username);
     }
 
-    @GetMapping(params = "username")
-    public Boolean usernameExists(@RequestParam("username") String username) {
+    @GetMapping(params = "usernameExists")
+    public Boolean usernameExists(@RequestParam("usernameExists") String username) {
         return userClient.usernameExists(username);
     }
 

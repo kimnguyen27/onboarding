@@ -16,7 +16,7 @@ export class UsernameValidator {
       .pipe(
         switchMap(() => {
           // Check if username is available
-          return this.userService.findByUsername(text)
+          return this.userService.usernameExists(text)
         })
       );
   }

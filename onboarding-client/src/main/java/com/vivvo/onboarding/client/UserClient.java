@@ -62,7 +62,7 @@ public class UserClient {
 
     public Boolean usernameExists(String username) {
         return userTarget()
-                .queryParam("username", username)
+                .queryParam("usernameExists", username)
                 .request()
                 .get(Boolean.TYPE);
     }
