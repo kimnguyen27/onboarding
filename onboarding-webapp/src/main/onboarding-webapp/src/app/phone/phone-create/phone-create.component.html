@@ -6,7 +6,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="row justify-content-center" [formGroup]="phoneCreateForm" (keyup.enter)="saveIfValid()">
+  <form class="row justify-content-center" [formGroup]="phoneCreateForm" (keyup.enter)="onSubmit()">
     <div class="col-md-6">
       <div class="form-group">
         <label for="phoneNumber">Phone number</label>
@@ -23,7 +23,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-info" (click)="savePhone(); activeModal.close('Close click');"
-          [disabled]="!phoneCreateForm.valid">Save</button>
+  <button type="reset" class="btn btn-secondary mr-2" (click)="revert()">Reset</button>
+  <button type="submit" class="btn btn-info" (click)="onSubmit()" [disabled]="!phoneCreateForm.valid">Save</button>
 </div>
 

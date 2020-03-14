@@ -14,7 +14,7 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
-    <form class="row justify-content-center" [formGroup]="phoneEditForm" (keyup.enter)="saveIfValid()">
+    <form class="row justify-content-center" [formGroup]="phoneEditForm" (keyup.enter)="onSubmit()">
       <div class="col-md-6">
         <div class="form-group">
           <label for="phoneNumber">Phone number</label>
@@ -45,7 +45,6 @@
 </ng-container>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
-  <button *ngIf="!verified" type="button" class="btn btn-info"
-          (click)="savePhone(); activeModal.close('Save click');"
+  <button *ngIf="!verified" type="submit" class="btn btn-info" (click)="onSubmit()"
           [disabled]="!phoneEditForm.valid">Save</button>
 </div>

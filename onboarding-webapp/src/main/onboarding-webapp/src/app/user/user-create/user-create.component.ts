@@ -52,10 +52,6 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveIfValid() {
-
-  }
-
   saveUser(): void {
     const valueToSave = {...this.userCreateForm.value};
 

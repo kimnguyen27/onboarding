@@ -14,7 +14,7 @@
 </div>
 <ng-container *ngIf="loadingSubscription.closed">
   <div class="modal-body">
-    <form class="row justify-content-center" [formGroup]="userEditForm" (keyup.enter)="saveIfValid()">
+    <form class="row justify-content-center" [formGroup]="userEditForm" (keyup.enter)="onSubmit()">
       <div class="col-md-8">
         <div class="form-group">
           <label for="username">Username</label>
@@ -40,7 +40,6 @@
   </div>
 </ng-container>
 <div class="modal-footer">
-  <!--  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>-->
-  <button type="button" class="btn btn-info" (click)="saveUser(); activeModal.close('Save click');"
-          [disabled]="!userEditForm.valid">Save</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+  <button type="submit" class="btn btn-info" (click)="onSubmit()" [disabled]="!userEditForm.valid">Save</button>
 </div>

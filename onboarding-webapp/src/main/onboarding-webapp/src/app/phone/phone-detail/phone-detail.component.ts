@@ -60,10 +60,10 @@ export class PhoneDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  saveIfValid() {
+  onSubmit() {
     if (this.phoneEditForm.valid) {
       this.savePhone();
-      this.activeModal.close('Close enter');
+      this.activeModal.close('Close submit');
     }
   }
 
